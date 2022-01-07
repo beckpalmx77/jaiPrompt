@@ -52,7 +52,7 @@ if (strlen($_SESSION['alogin']) == "") {
                                                                             Initial Permission</h3></label>
 
                                                                     <div class="form-group row">
-                                                                        <div class="col-sm-4">
+                                                                        <div class="col-sm-3">
                                                                             <label for="permission_id"
                                                                                    class="control-label">รหัสสิทธิ์การใช้งาน</label>
                                                                             <input type="text" class="form-control"
@@ -69,6 +69,18 @@ if (strlen($_SESSION['alogin']) == "") {
                                                                                    required="required"
                                                                                    placeholder="รายละเอียด">
                                                                         </div>
+
+                                                                        <div class="form-group">
+                                                                            <label for="dashboard_page">หน้า DASHBOARD</label>
+                                                                            <select class="form-control" name="dashboard_page" id="dashboard_page">
+                                                                                <option value="Dashboard_admin">Dashboard_admin</option>
+                                                                                <option value="Dashboard_general">Dashboard_general</option>
+                                                                                <option value="Dashboard_purchase">Dashboard_purchase</option>
+                                                                                <option value="Dashboard_sale">Dashboard_sale</option>
+                                                                                <option value="Dashboard_warehouse">Dashboard_warehouse</option>
+                                                                            </select>
+                                                                        </div>
+
                                                                         <div class="col-sm-2">
                                                                             <label for="PermissionModal"
                                                                                    class="control-label">
@@ -90,7 +102,8 @@ if (strlen($_SESSION['alogin']) == "") {
 
                                                                     <input type="button" name="BtnUnSelect"
                                                                            class="btn btn-warning btn-block"
-                                                                           value="ไม่เลือกทั้งหมด - Unselect All" id="BtnUnSelect"
+                                                                           value="ไม่เลือกทั้งหมด - Unselect All"
+                                                                           id="BtnUnSelect"
                                                                            onclick="CheckAllBox(false);">
 
                                                                     <div class=”form-group”>
@@ -293,6 +306,7 @@ if (strlen($_SESSION['alogin']) == "") {
                 let action = "SAVE";
                 let permission_id = $('#permission_id').val();
                 let permission_detail = $('#permission_detail').val();
+                let dashboard_page = $('#dashboard_page').val();
                 let main_list_value = getMainValue();
                 let sub_list_value = getSubValue();
 
@@ -304,6 +318,7 @@ if (strlen($_SESSION['alogin']) == "") {
                             action: action,
                             permission_id: permission_id,
                             permission_detail: permission_detail,
+                            dashboard_page: dashboard_page,
                             main_list_value: main_list_value,
                             sub_list_value: sub_list_value
                         },
@@ -321,6 +336,30 @@ if (strlen($_SESSION['alogin']) == "") {
                 } else {
                     alert('กรุณาป้อนข้อมูลให้ครบถ้วน');
                 }
+            });
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+
+            $("#permission_id").blur(function (e) {
+                let permission_id = $('#permission_id').val();
+                let formData = {action: "CHECK_DUP", permission_id: permission_id};
+                $.ajax({
+                    url: 'model/manage_permission.php',
+                    method: "POST",
+                    data: formData,
+                    success: function (data) {
+
+                        if (data === "have") {
+                            alert("มีรหัสนี้อยู่แล้ว เปลี่ยนหรือเลือกจาก LIst เพื่อปรับปรุง");
+                        }
+
+                    }
+                })
+
             });
         });
     </script>

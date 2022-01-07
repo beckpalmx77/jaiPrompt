@@ -33,54 +33,6 @@ if ($_POST["action"] === 'INIT') {
     echo $checkbox;
 }
 
-if ($_POST["action"] === 'SAVE') {
-
-    $permission_id = $_POST["permission_id"];
-    $permission_detail = $_POST["permission_detail"];
-    $main_list_value = $_POST["main_list_value"];
-    $sub_list_value = $_POST["sub_list_value"];
-
-    if ($permission_id !=="" && $permission_detail !=="" && $main_list_value !=="" && $sub_list_value !=="") {
-
-        $sql_find = "SELECT * FROM ims_permission WHERE permission_id = '" . $permission_id . "'";
-        $nRows = $conn->query($sql_find)->fetchColumn();
-        if ($nRows <= 0) {
-
-            $sql = "INSERT INTO ims_permission(permission_id,permission_detail,main_list_value,sub_list_value) 
-                    VALUES (:permission_id,:permission_detail,:main_menu,:sub_menu)";
-            $query = $conn->prepare($sql);
-            $query->bindParam(':permission_id', $permission_id, PDO::PARAM_STR);
-            $query->bindParam(':permission_detail', $permission_detail, PDO::PARAM_STR);
-            $query->bindParam(':main_list_value', $main_list_value, PDO::PARAM_STR);
-            $query->bindParam(':sub_list_value', $sub_list_value, PDO::PARAM_STR);
-            $query->execute();
-            $lastInsertId = $conn->lastInsertId();
-
-            if ($lastInsertId) {
-                echo json_encode(array("statusCode"=>200));
-            } else {
-                echo json_encode(array("statusCode"=>201));
-            }
-
-        } else {
-            $sql_update = "UPDATE ims_permission SET permission_detail=:permission_detail,main_menu=:main_list_value,sub_menu=:sub_list_value            
-            WHERE permission_id = :permission_id";
-            $query = $conn->prepare($sql_update);
-            $query->bindParam(':permission_detail', $permission_detail, PDO::PARAM_STR);
-            $query->bindParam(':main_list_value', $main_list_value, PDO::PARAM_STR);
-            $query->bindParam(':sub_list_value', $sub_list_value, PDO::PARAM_STR);
-            $query->bindParam(':permission_id', $permission_id, PDO::PARAM_STR);
-            $query->execute();
-            echo json_encode(array("statusCode"=>200));
-        }
-    }
-    else {
-        echo json_encode(array("statusCode"=>201));
-    }
-
-
-}
-
 if ($_POST["action"] === 'LOAD_PERMISSION') {
     $permission_id = $_POST["permission_id"];
 
@@ -94,10 +46,76 @@ if ($_POST["action"] === 'LOAD_PERMISSION') {
         $return_arr[] = array("id" => $result['id'],
             "main_menu" => $result['main_menu'],
             "sub_menu" => $result['sub_menu'],
+            "dashboard_page" => $result['dashboard_page'],
             "status" => $result['status']);
     }
 
     echo json_encode($return_arr);
+
+}
+
+if ($_POST["action"] === 'CHECK_DUP') {
+
+    $permission_id = $_POST["permission_id"];
+    $sql_find = "SELECT * FROM ims_permission WHERE permission_id = '" . $permission_id . "'";
+    $nRows = $conn->query($sql_find)->fetchColumn();
+    if ($nRows > 0) {
+        echo "have";
+    } else {
+        echo "none";
+    }
+
+}
+
+if ($_POST["action"] === 'SAVE') {
+
+    $permission_id = $_POST["permission_id"];
+    $permission_detail = $_POST["permission_detail"];
+    $dashboard_page = $_POST["dashboard_page"];
+    $main_list_value = $_POST["main_list_value"];
+    $sub_list_value = $_POST["sub_list_value"];
+
+    if ($permission_id !=="" && $permission_detail !=="" && $main_list_value !=="" && $sub_list_value !=="") {
+
+        $sql_find = "SELECT * FROM ims_permission WHERE permission_id = '" . $permission_id . "'";
+        $nRows = $conn->query($sql_find)->fetchColumn();
+        if ($nRows <= 0) {
+
+            $sql = "INSERT INTO ims_permission(permission_id,permission_detail,dashboard_page,main_list_value,sub_list_value) 
+                    VALUES (:permission_id,:permission_detail,:dashboard_page,:main_menu,:sub_menu)";
+            $query = $conn->prepare($sql);
+            $query->bindParam(':permission_id', $permission_id, PDO::PARAM_STR);
+            $query->bindParam(':permission_detail', $permission_detail, PDO::PARAM_STR);
+            $query->bindParam(':dashboard_page', $dashboard_page, PDO::PARAM_STR);
+            $query->bindParam(':main_list_value', $main_list_value, PDO::PARAM_STR);
+            $query->bindParam(':sub_list_value', $sub_list_value, PDO::PARAM_STR);
+            $query->execute();
+            $lastInsertId = $conn->lastInsertId();
+
+            if ($lastInsertId) {
+                echo json_encode(array("statusCode"=>200));
+            } else {
+                echo json_encode(array("statusCode"=>201));
+            }
+
+        } else {
+            $sql_update = "UPDATE ims_permission SET permission_detail=:permission_detail,dashboard_page=:dashboard_page
+            ,main_menu=:main_list_value,sub_menu=:sub_list_value            
+            WHERE permission_id = :permission_id";
+            $query = $conn->prepare($sql_update);
+            $query->bindParam(':permission_detail', $permission_detail, PDO::PARAM_STR);
+            $query->bindParam(':dashboard_page', $dashboard_page, PDO::PARAM_STR);
+            $query->bindParam(':main_list_value', $main_list_value, PDO::PARAM_STR);
+            $query->bindParam(':sub_list_value', $sub_list_value, PDO::PARAM_STR);
+            $query->bindParam(':permission_id', $permission_id, PDO::PARAM_STR);
+            $query->execute();
+            echo json_encode(array("statusCode"=>200));
+        }
+    }
+    else {
+        echo json_encode(array("statusCode"=>201));
+    }
+
 
 }
 

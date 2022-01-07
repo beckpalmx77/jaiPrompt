@@ -2,6 +2,7 @@
 session_start();
 error_reporting(0);
 include('config/connect_db.php');
+include('config/lang.php');
 ?>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
@@ -16,7 +17,7 @@ include('config/connect_db.php');
     </a>
     <hr class="sidebar-divider my-0">
     <li class="nav-item active">
-        <a class="nav-link" href="Dashboard.php">
+        <a class="nav-link" href="<?php echo $_SESSION['dashboard_page'];?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>

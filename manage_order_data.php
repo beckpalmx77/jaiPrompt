@@ -448,7 +448,7 @@ if (strlen($_SESSION['alogin']) == "") {
     <script>
         $(document).ready(function () {
             $('#doc_date').datepicker({
-                format: "yyyy-mm-dd",
+                format: "dd-mm-yyyy",
                 todayHighlight: true,
                 language: "th",
                 autoclose: true
@@ -782,10 +782,8 @@ if (strlen($_SESSION['alogin']) == "") {
     <script>
 
         $('#quantity,#price,#total_price').blur(function () {
-
             let total_price = new Calculate($('#quantity').val(), $('#price').val());
             $('#total_price').val(total_price.Multiple().toFixed(2));
-
         });
 
     </script>

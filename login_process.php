@@ -2,6 +2,7 @@
 session_start();
 error_reporting(0);
 include('config/connect_db.php');
+include('config/lang.php');
 
 if ($_SESSION['alogin'] != '') {
     $_SESSION['alogin'] = '';
@@ -27,7 +28,8 @@ if ($query->rowCount() == 1) {
             $_SESSION['account_type'] = $result->account_type;
             $_SESSION['user_picture'] = $result->picture;
             $_SESSION['lang'] = $result->lang;
-            $_SESSION['system_name'] = "Jai Prompt Enterprise Resource Planning";
+            $_SESSION['dashboard_page'] = $result->dashboard_page . ".php";
+            $_SESSION['system_name'] = $system_name;
             echo $result->dashboard_page . ".php";
         } else {
             echo 0;

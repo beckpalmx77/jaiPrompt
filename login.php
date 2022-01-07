@@ -77,7 +77,7 @@ include('includes/Header.php');
                                     <button type="button" name="login-submit" id="login-submit" tabindex="4"
                                             class="form-control btn btn-primary">
                                             <span class="spinner">
-                                                <i class="icon-spin icon-refresh" id="spinner"></i></span>Log In
+                                                <i class="icon-spin icon-refresh" id="spinner"></i></span>  Log In
                                 </div>
                             </div>
                         </div>

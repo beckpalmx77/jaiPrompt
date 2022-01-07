@@ -51,6 +51,9 @@ $("#TablePermissionList").on('click', '.select', function () {
                 let id = response[i].id;
                 let main_menu = response[i].main_menu;
                 let sub_menu = response[i].sub_menu;
+                let dashboard_page = response[i].dashboard_page;
+
+                $('#dashboard_page').val(dashboard_page);
 
                 let main_menu_array = main_menu.split(",");
                 let sub_menu_array = sub_menu.split(",");

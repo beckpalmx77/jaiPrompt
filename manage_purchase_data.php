@@ -449,7 +449,7 @@ if (strlen($_SESSION['alogin']) == "") {
     <script>
         $(document).ready(function () {
             $('#doc_date').datepicker({
-                format: "yyyy-mm-dd",
+                format: "dd-mm-yyyy",
                 todayHighlight: true,
                 language: "th",
                 autoclose: true
