@@ -181,14 +181,14 @@ CREATE TABLE `ims_pgroup`  (
 INSERT INTO `ims_pgroup` VALUES (3, 'EL', 'เครื่องใช้ไฟฟ้า-ZX', 'Active');
 INSERT INTO `ims_pgroup` VALUES (4, 'MB', 'โทรศัพท์', 'Active');
 INSERT INTO `ims_pgroup` VALUES (5, 'GN', 'ของใช้ทั่วไป', 'Active');
-INSERT INTO `ims_pgroup` VALUES (6, 'CA', 'เครื่องยนต์ อะไหล่ยนต์', 'Active');
+INSERT INTO `ims_pgroup` VALUES (6, 'CA', 'เครื่องยนต์ วัสดุยนต์', 'Active');
 INSERT INTO `ims_pgroup` VALUES (7, 'ZZ', 'ค่าบริการ/ค่าแรง', 'Active');
 INSERT INTO `ims_pgroup` VALUES (8, 'CH', 'สารเคมี', 'Active');
 INSERT INTO `ims_pgroup` VALUES (9, 'ST', 'อุปกรณ์เหล็กเหล็กรูปพรรณ', 'Active');
 INSERT INTO `ims_pgroup` VALUES (11, 'SE', 'ซีล / โอริง', 'Active');
 INSERT INTO `ims_pgroup` VALUES (12, 'OF', 'อุปกรณ์สำนักงาน', 'Active');
 INSERT INTO `ims_pgroup` VALUES (13, 'FL', 'หน้าแปลน / เฟล็กซ์', 'Active');
-INSERT INTO `ims_pgroup` VALUES (14, 'MA', 'เครื่องจักร / อะไหล่', 'Active');
+INSERT INTO `ims_pgroup` VALUES (14, 'MA', 'เครื่องจักร / วัสดุ', 'Active');
 INSERT INTO `ims_pgroup` VALUES (15, 'TO', 'เครื่องมือช่าง/อุปกรณ์ซ่อมบำรุง', 'Active');
 INSERT INTO `ims_pgroup` VALUES (16, 'CO', 'วัสดุงานก่อสร้าง', 'Active');
 INSERT INTO `ims_pgroup` VALUES (17, 'BE', 'สายพาน', 'Active');
@@ -1122,7 +1122,7 @@ INSERT INTO `ims_product` VALUES (893, 'ST-1-LPL408043-CG', 'ST', NULL, 'เห�
 INSERT INTO `ims_product` VALUES (894, 'TO-1-CLAMP6IN0-CG', 'TO', NULL, 'ปากกาจับงาน 6นิ้ว', '-', 0.00, '1268', 'Active', '2021-10-02 14:53:41', 'img/icon/product-001.png');
 INSERT INTO `ims_product` VALUES (895, 'TO-1-SLIDETL01-CG', 'TO', NULL, 'ด้ามเลื่อนขนาด 1/2 นิ้ว', '-', 0.00, '1268', 'Active', '2021-10-02 14:53:41', 'img/icon/product-001.png');
 INSERT INTO `ims_product` VALUES (896, 'MU-1-B50020150-CG', 'MU', NULL, 'พลูเล่ย์ ขนาด 5 นิ้ว 2 ร่อง B รูเพลา 1 1/2 นิ้ว ร่องลิ่ม 8 มิล ลึก 2 มิล', '-', 0.00, '1268', 'Active', '2021-10-02 14:53:41', 'img/icon/product-001.png');
-INSERT INTO `ims_product` VALUES (897, 'LA-1-MACHINE25-CG', 'LA', NULL, 'เครื่องตีป่น(สลัก4ชุด)มอเตอร์ 2 HP 2 POLE 3 PH พร้อมตะแกรงอะไหล่ รู เส้นผ่าศูนย์กลาง 1.5 mm', '-', 0.00, '1259', 'Active', '2021-10-02 14:53:41', 'img/icon/product-001.png');
+INSERT INTO `ims_product` VALUES (897, 'LA-1-MACHINE25-CG', 'LA', NULL, 'เครื่องตีป่น(สลัก4ชุด)มอเตอร์ 2 HP 2 POLE 3 PH พร้อมตะแกรงวัสดุ รู เส้นผ่าศูนย์กลาง 1.5 mm', '-', 0.00, '1259', 'Active', '2021-10-02 14:53:41', 'img/icon/product-001.png');
 INSERT INTO `ims_product` VALUES (898, 'LA-1-MAGNETICO-CG', 'LA', NULL, 'Permament Magnetic bar for test Approx > 12000 Gamss', '-', 0.00, '1268', 'Active', '2021-10-02 14:53:41', 'img/icon/product-001.png');
 INSERT INTO `ims_product` VALUES (899, 'ST-1-LSP404045-CG', 'ST', NULL, 'เหล็กสี่เหลี่ยมโปร่ง 4 นิ้ว x 4 นิ้ว หนา 4.5 มิล ยาว 6 เมตร', '-', 0.00, '1289', 'Active', '2021-10-02 14:53:42', 'img/icon/product-001.png');
 INSERT INTO `ims_product` VALUES (900, 'CA-1-CRUT05124-CG', 'CA', NULL, 'ชูดซ่อมครัชบน โฟล์คลิฟท์', '-', 0.00, '1262', 'Active', '2021-10-02 14:53:42', 'img/icon/product-001.png');
@@ -1622,7 +1622,7 @@ INSERT INTO `menu_sub` VALUES (3, 'S103', 'M001', 'เปลี่ยนรห�
 INSERT INTO `menu_sub` VALUES (10, 'S104', 'M001', 'จัดการเมนูหลักของระบบ', 'Main Menu ', 'manage-menu-main.php', '', 'fa fa-window-maximize', 4, 'Admin');
 INSERT INTO `menu_sub` VALUES (11, 'S105', 'M001', 'จัดการเมนูหน้าจอของระบบ', 'Sub Menu And Screen', 'manage-menu-sub.php', '', 'fa fa-window-restore', 5, 'Admin');
 INSERT INTO `menu_sub` VALUES (19, 'S106', 'M001', 'เปลี่ยนภาษา ', 'Change Language', 'change-language.php', NULL, 'fa fa-language', 8, 'User');
-INSERT INTO `menu_sub` VALUES (24, 'S201', 'M002', 'ทะเบียนสินค้า-อะไหล่', 'Product-Part', 'manage-product.php', NULL, 'fa fa-th', 1, 'User');
+INSERT INTO `menu_sub` VALUES (24, 'S201', 'M002', 'ทะเบียนสินค้า-วัสดุ', 'Product-Part', 'manage-product.php', NULL, 'fa fa-th', 1, 'User');
 INSERT INTO `menu_sub` VALUES (25, 'S202', 'M002', 'ทะเบียนหน่วยนับ', 'Unit Code', 'manage-unit.php', NULL, 'fa fa-th', 2, 'User');
 INSERT INTO `menu_sub` VALUES (26, 'S203', 'M002', 'ทะเบียนกลุ่มสินค้า', 'Product Group', 'manage-product-group.php', NULL, 'fa fa-th', 3, 'User');
 INSERT INTO `menu_sub` VALUES (27, 'S401', 'M004', 'เอกสารรายการขาย ', 'Order Document', 'manage-order.php', NULL, 'fa fa-list-alt', 1, 'User');

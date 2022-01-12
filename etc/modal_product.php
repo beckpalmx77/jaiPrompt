@@ -11,20 +11,20 @@
                 <div class="modal-body">
                     <form method="post" id="recordForm">
                         <div class="form-group">
-                            <label for="product_id" class="control-label">รหัสสินค้า/อะไหล่</label>
+                            <label for="product_id" class="control-label">รหัสสินค้า/วัสดุ</label>
                             <input type="product_id" class="form-control"
                                    id="product_id" name="product_id"
                                    required="required"
-                                   placeholder="รหัสสินค้า/อะไหล่">
+                                   placeholder="รหัสสินค้า/วัสดุ">
                         </div>
 
                         <div class="form-group">
                             <label for="name_t"
-                                   class="control-label">ชื่อสินค้า/อะไหล่</label>
+                                   class="control-label">ชื่อสินค้า/วัสดุ</label>
                             <input type="text" class="form-control" id="name_t"
                                    name="name_t"
                                    required="required"
-                                   placeholder="ชื่อสินค้า/อะไหล่">
+                                   placeholder="ชื่อสินค้า/วัสดุ">
                         </div>
 
                         <div class="form-group row">

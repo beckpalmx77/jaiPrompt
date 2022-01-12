@@ -45,7 +45,6 @@ if (strlen($_SESSION['alogin']) == "") {
 
                                                         <form id="from_data">
                                                             <div class="form-group has-success">
-
                                                                 <div class="form-group has-success">
                                                                     <label class="control-label" for="lang"><h3>
                                                                             กำหนดสิทธิ์การใช้งานระบบ
@@ -330,7 +329,6 @@ if (strlen($_SESSION['alogin']) == "") {
                             } else if (dataResult.statusCode == 201) {
                                 alert("ไม่สามารถบันทึกข้อมูลได้");
                             }
-
                         }
                     });
                 } else {
@@ -352,11 +350,9 @@ if (strlen($_SESSION['alogin']) == "") {
                     method: "POST",
                     data: formData,
                     success: function (data) {
-
                         if (data === "have") {
                             alert("มีรหัสนี้อยู่แล้ว เปลี่ยนหรือเลือกจาก LIst เพื่อปรับปรุง");
                         }
-
                     }
                 })
 

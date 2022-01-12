@@ -176,24 +176,24 @@ if (strlen($_SESSION['alogin']) == "") {
                                                                 <div class="form-group row">
                                                                     <div class="col-sm-5">
                                                                         <label for="product_id"
-                                                                               class="control-label">รหัสสินค้า/อะไหล่</label>
+                                                                               class="control-label">รหัสสินค้า/วัสดุ</label>
                                                                         <input type="product_id"
                                                                                class="form-control"
                                                                                id="product_id" name="product_id"
                                                                                required="required"
                                                                                readonly="true"
-                                                                               placeholder="รหัสสินค้า/อะไหล่">
+                                                                               placeholder="รหัสสินค้า/วัสดุ">
                                                                     </div>
 
                                                                     <div class="col-sm-5">
                                                                         <label for="name_t"
-                                                                               class="control-label">ชื่อสินค้า/อะไหล่</label>
+                                                                               class="control-label">ชื่อสินค้า/วัสดุ</label>
                                                                         <input type="text" class="form-control"
                                                                                id="name_t"
                                                                                name="name_t"
                                                                                required="required"
                                                                                readonly="true"
-                                                                               placeholder="ชื่อสินค้า/อะไหล่">
+                                                                               placeholder="ชื่อสินค้า/วัสดุ">
                                                                     </div>
 
                                                                     <div class="col-sm-2">

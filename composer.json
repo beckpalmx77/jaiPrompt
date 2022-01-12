@@ -11,6 +11,7 @@
     "ext-json": "*"
   },
   "require": {
-    "ttskch/select2-bootstrap4-theme": "^1.5"
+    "ttskch/select2-bootstrap4-theme": "^1.5",
+    "mpdf/mpdf": "^8.0"
   }
 }

@@ -33,7 +33,6 @@
       <path value="$PROJECT_DIR$/vendor/tcpdf/tools" />
       <path value="$PROJECT_DIR$/vendor/tcpdf/include" />
       <path value="$PROJECT_DIR$/vendor/tcpdf/config" />
-      <path value="$PROJECT_DIR$/vendor/tcpdf/examples" />
       <path value="$PROJECT_DIR$/vendor/tcpdf/fonts" />
       <path value="$PROJECT_DIR$/vendor/fontawesome-4.7/css" />
       <path value="$PROJECT_DIR$/vendor/bootstrap-select/css" />
@@ -56,6 +55,12 @@
       <path value="$PROJECT_DIR$/vendor/mycalendar/timegrid" />
       <path value="$PROJECT_DIR$/vendor/mycalendar/jqueryui" />
       <path value="$PROJECT_DIR$/vendor/mycalendar/css" />
+      <path value="$PROJECT_DIR$/vendor/tcpdf/etc" />
+      <path value="$PROJECT_DIR$/vendor/mpdf/mpdf" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/vendor/setasign/fpdi" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />

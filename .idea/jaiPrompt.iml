@@ -41,6 +41,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/fontawesome-free/sprites" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/fontawesome-free/svgs" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/fontawesome-free/webfonts" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/mpdf/mpdf" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mycalendar/bootstrap" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mycalendar/colorpicker" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mycalendar/core" />
@@ -52,8 +53,12 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/mycalendar/jqueryui" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mycalendar/list" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mycalendar/timegrid" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/myclabs/deep-copy" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/log" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/setasign/fpdi" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/tcpdf/config" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/tcpdf/examples" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/tcpdf/etc" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/tcpdf/fonts" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/tcpdf/include" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/tcpdf/tools" />

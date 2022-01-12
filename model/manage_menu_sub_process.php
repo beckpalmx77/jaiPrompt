@@ -9,7 +9,7 @@ include('../util/record_util.php');
 if ($_POST["action"] === 'GET_DATA') {
     $id = $_POST["id"];
     $return_arr = array();
-    $sql_get = "SELECT *,menu_main.label as main_label FROM menu_sub
+    $sql_get = "SELECT menu_sub.*,menu_main.label as main_label FROM menu_sub
     LEFT JOIN  menu_main 
     ON menu_main.main_menu_id =  menu_sub.main_menu_id
     WHERE menu_sub.id = " . $id;

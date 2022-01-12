@@ -52,8 +52,8 @@ if (strlen($_SESSION['alogin']) == "") {
                                             <table id='TableRecordList' class='display dataTable'>
                                                 <thead>
                                                 <tr>
-                                                    <th>รหัสสินค้า/อะไหล่</th>
-                                                    <th>ชื่อสินค้า/อะไหล่</th>
+                                                    <th>รหัสสินค้า/วัสดุ</th>
+                                                    <th>ชื่อสินค้า/วัสดุ</th>
                                                     <th>ยอดคงเหลือ</th>
                                                     <th>หน่วยนับ</th>
                                                     <th>Status</th>
@@ -63,8 +63,8 @@ if (strlen($_SESSION['alogin']) == "") {
                                                 </thead>
                                                 <tfoot>
                                                 <tr>
-                                                    <th>รหัสสินค้า/อะไหล่</th>
-                                                    <th>ชื่อสินค้า/อะไหล่</th>
+                                                    <th>รหัสสินค้า/วัสดุ</th>
+                                                    <th>ชื่อสินค้า/วัสดุ</th>
                                                     <th>ยอดคงเหลือ</th>
                                                     <th>หน่วยนับ</th>
                                                     <th>Status</th>
@@ -93,21 +93,21 @@ if (strlen($_SESSION['alogin']) == "") {
 
                                                                 <div class="form-group row">
                                                                     <div class="col-sm-4">
-                                                                        <label for="product_id" class="control-label">รหัสสินค้า/อะไหล่</label>
+                                                                        <label for="product_id" class="control-label">รหัสสินค้า/วัสดุ</label>
                                                                         <input type="product_id" class="form-control"
                                                                                id="product_id" name="product_id"
                                                                                required="required"
-                                                                               placeholder="รหัสสินค้า/อะไหล่">
+                                                                               placeholder="รหัสสินค้า/วัสดุ">
                                                                     </div>
 
                                                                     <div class="col-sm-8">
                                                                         <label for="name_t"
-                                                                               class="control-label">ชื่อสินค้า/อะไหล่</label>
+                                                                               class="control-label">ชื่อสินค้า/วัสดุ</label>
                                                                         <input type="text" class="form-control"
                                                                                id="name_t"
                                                                                name="name_t"
                                                                                required="required"
-                                                                               placeholder="ชื่อสินค้า/อะไหล่">
+                                                                               placeholder="ชื่อสินค้า/วัสดุ">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">

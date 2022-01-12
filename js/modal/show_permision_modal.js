@@ -37,7 +37,6 @@ $("#TablePermissionList").on('click', '.select', function () {
 
     //document.getElementById("myDIV").innerHTML = "";
 
-
     let permission_id = data[0];
     let formData = {action: "LOAD_PERMISSION", permission_id: permission_id};
     $.ajax({
@@ -48,7 +47,6 @@ $("#TablePermissionList").on('click', '.select', function () {
         success: function (response) {
             let len = response.length;
             for (let i = 0; i < len; i++) {
-                let id = response[i].id;
                 let main_menu = response[i].main_menu;
                 let sub_menu = response[i].sub_menu;
                 let dashboard_page = response[i].dashboard_page;
@@ -61,21 +59,25 @@ $("#TablePermissionList").on('click', '.select', function () {
                 let main_list = document.getElementsByName("menu_main");
                 let sub_list = document.getElementsByName("menu_sub");
 
-                for (let i = 0; i < main_list.length ; i++) {
-                    if (main_list[i].value === main_menu_array[i]) {
-                        //alert(main_list[i].value + " Match = " + main_menu_array[i]);
-                        document.getElementsByName("menu_main")[i].checked = true;
-                    } else {
-                        document.getElementsByName("menu_main")[i].checked = false;
+                for (let ml = 0; ml < main_list.length; ml++) {
+                    document.getElementsByName("menu_main")[ml].checked = false;
+                }
+
+                for (let sl = 0; sl < sub_list.length; sl++) {
+                    document.getElementsByName("menu_sub")[sl].checked = false;
+                }
+
+                for (let m = 0; m < main_menu_array.length; m++) {
+                    let m_main = main_menu_array[m];
+                    if (m_main!=="") {
+                    document.getElementById(m_main).checked = true;
                     }
                 }
 
-                for (let i = 0; i < sub_list.length ; i++) {
-                    if (sub_list[i].value === sub_menu_array[i]) {
-                        //alert(sub_list[i].value + " Match = " + sub_menu_array[i]);
-                        document.getElementsByName("menu_sub")[i].checked = true;
-                    } else {
-                        document.getElementsByName("menu_sub")[i].checked = false;
+                for (let s = 0; s < sub_menu_array.length; s++) {
+                    let m_sub = sub_menu_array[s];
+                    if (m_sub!=="") {
+                        document.getElementById(m_sub).checked = true;
                     }
                 }
 
