@@ -8,6 +8,8 @@ if (strlen($_SESSION['alogin']) == "") {
     <!DOCTYPE html>
     <html lang="th">
 
+    <script src="js/popup.js"></script>
+
     <body id="page-top">
     <div id="wrapper">
         <?php
@@ -23,6 +25,8 @@ if (strlen($_SESSION['alogin']) == "") {
                 <div class="container-fluid" id="container-wrapper">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800"><?php echo urldecode($_GET['s']) ?></h1>
+                        <input type="hidden" id="main_menu" value="<?php echo urldecode($_GET['m']) ?>">
+                        <input type="hidden" id="sub_menu" value="<?php echo urldecode($_GET['s']) ?>">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="Dashboard.php">Home</a></li>
                             <li class="breadcrumb-item"><?php echo urldecode($_GET['m']) ?></li>
@@ -56,10 +60,11 @@ if (strlen($_SESSION['alogin']) == "") {
                                                     <th>ชื่อโครงการ</th>
                                                     <th>แบบบ้าน</th>
                                                     <th>เนื้อที่</th>
-                                                    <th>จำนวนชั้น</th>
-                                                    <th>จำนวนห้องนอน</th>
-                                                    <th>จำนวนห้องน้ำ</th>
+                                                    <th>ชั้น</th>
+                                                    <th>ห้องนอน</th>
+                                                    <th>ห้องน้ำ</th>
                                                     <th>Status</th>
+                                                    <th>Action</th>
                                                     <th>Action</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -69,10 +74,11 @@ if (strlen($_SESSION['alogin']) == "") {
                                                     <th>ชื่อโครงการ</th>
                                                     <th>แบบบ้าน</th>
                                                     <th>เนื้อที่</th>
-                                                    <th>จำนวนชั้น</th>
-                                                    <th>จำนวนห้องนอน</th>
-                                                    <th>จำนวนห้องน้ำ</th>
+                                                    <th>ชั้น</th>
+                                                    <th>ห้องนอน</th>
+                                                    <th>ห้องน้ำ</th>
                                                     <th>Status</th>
+                                                    <th>Action</th>
                                                     <th>Action</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -192,12 +198,6 @@ if (strlen($_SESSION['alogin']) == "") {
                                                                         <textarea name="comment" id="comment"
                                                                                   class="form-control"
                                                                                   rows="5"></textarea>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <div class="col-sm-6">
-                                                                            <button class="btn btn-primary" onclick="AddImage();">เพิ่มรูปภาพ
-                                                                            <i class="fa fa-plus" aria-hidden="true"></i></button>
                                                                     </div>
                                                                 </div>
 
@@ -359,6 +359,7 @@ if (strlen($_SESSION['alogin']) == "") {
                     {data: 'bathroom'},
                     {data: 'status'},
                     {data: 'update'},
+                    {data: 'image'},
                     {data: 'delete'}
                 ]
             });
@@ -549,6 +550,42 @@ if (strlen($_SESSION['alogin']) == "") {
 
     </script>
 
+    <script>
+
+        $("#TableRecordList").on('click', '.image', function () {
+            let id = $(this).attr("id");
+            let main_menu = document.getElementById("main_menu").value;
+            let sub_menu = document.getElementById("sub_menu").value;
+            //alert(id);
+            let formData = {action: "GET_DATA", id: id};
+            $.ajax({
+                type: "POST",
+                url: 'model/manage_home_process.php',
+                dataType: "json",
+                data: formData,
+                success: function (response) {
+                    let len = response.length;
+                    for (let i = 0; i < len; i++) {
+                        let id = response[i].id;
+                        let img = response[i].img;
+                        //let img_show = img.split(",");
+                        //$('#id').val(id);
+                        let url = "manage_image.php?title=จัดการรูปภาพ (Manage Image)"
+                            + '&img=' + img
+                            + '&main_menu=' + main_menu + '&sub_menu=' + sub_menu
+                            + '&id=' + id
+                            + '&action=UPDATE';
+                        OpenPopupCenter(url, "", "");
+                    }
+                },
+                error: function (response) {
+                    alertify.error("error : " + response);
+                }
+            });
+        });
+
+    </script>
+
 
     <script>
         function Manage_image(img_name) {
@@ -567,12 +604,6 @@ if (strlen($_SESSION['alogin']) == "") {
             }
             alert("filename2 = " + filename2);
             */
-        }
-    </script>
-
-    <script>
-        function AddImage() {
-            alert("Add Image");
         }
     </script>
 

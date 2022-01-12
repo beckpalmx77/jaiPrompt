@@ -223,6 +223,7 @@ if ($_POST["action"] === 'GET_HOME') {
                 "floor" => $row['floor'],
                 "bedroom" => $row['bedroom'],
                 "bathroom" => $row['bathroom'],
+                "image" => "<button type='button' name='image' id='" . $row['id'] . "' class='btn btn-success btn-xs image' data-toggle='tooltip' title='AddImage'>Image</button>",
                 "update" => "<button type='button' name='update' id='" . $row['id'] . "' class='btn btn-info btn-xs update' data-toggle='tooltip' title='Update'>Update</button>",
                 "delete" => "<button type='button' name='delete' id='" . $row['id'] . "' class='btn btn-danger btn-xs delete' data-toggle='tooltip' title='Delete'>Delete</button>",
                 "status" => $row['status'] === 'Active' ? "<div class='text-success'>" . $row['status'] . "</div>" : "<div class='text-muted'> " . $row['status'] . "</div>"
