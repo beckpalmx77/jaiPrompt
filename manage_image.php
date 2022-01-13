@@ -218,10 +218,11 @@ if (strlen($_SESSION['alogin']) == "") {
                 if (img[i] !== "") {
                     //img_gallery = img_gallery + "<img src='gallery/" + img[i] + "' style=' width:100%'  onclick='Delete_Image(this);'>&nbsp;";
                     img_gallery = img_gallery + "<img src='gallery/" + img[i] + "' style=' width:100%'>&nbsp;";
-                    img_gallery = img_gallery + "<a href='javascript:Check_Image1("+ i + ")' class='icon-block'>ลบ <i class='fa fa-times' aria-hidden='true'></i></a>";
+                    img_gallery = img_gallery + "<a href='javascript:Delete_Image("+ i + ")' class='icon-block'>ลบ <i class='fa fa-times' aria-hidden='true'></i></a>";
                 }
             }
             img_gallery = img_gallery + "</div></div></div>";
+            //alert(img_gallery);
             document.getElementById("myDIV").innerHTML = img_gallery;
         }
     </script>
@@ -255,13 +256,16 @@ if (strlen($_SESSION['alogin']) == "") {
 
     <script>
         function Delete_Image(index) {
-            let img = $('#img_array').val().split(",");
-            if (index !== -1) {
-                img.splice(index, 1);
-                $('#img_array').val(img);
+            if (confirm("ต้องการลบรูปภาพนี้ ?")) {
+                let img = $('#img_array').val().split(",");
+                if (index !== -1) {
+                    img.splice(index, 1);
+                    $('#img_array').val(img);
+                }
+                Load_Image();
+                Check_Image();
             }
-            Load_Image();
-            Check_Image();
+
         }
     </script>
 

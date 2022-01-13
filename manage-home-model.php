@@ -370,7 +370,7 @@ if (strlen($_SESSION['alogin']) == "") {
                 $('#save').attr('disabled', 'disabled');
                 let formData = $(this).serialize();
                 $.ajax({
-                    url: 'model/manage_product_process.php',
+                    url: 'model/manage_home_process.php',
                     method: "POST",
                     data: formData,
                     success: function (data) {
@@ -431,13 +431,13 @@ if (strlen($_SESSION['alogin']) == "") {
                         let floor = response[i].floor;
                         let bedroom = response[i].bedroom;
                         let bathroom = response[i].bathroom;
-
+                        let comment = response[i].comment;
                         let status = response[i].status;
                         let img = response[i].img;
 
                         //alert(img);
 
-                        let img_show = img.split(",");
+                        //let img_show = img.split(",");
 
                         $('#recordModal').modal('show');
                         $('#id').val(id);
@@ -449,6 +449,7 @@ if (strlen($_SESSION['alogin']) == "") {
                         $('#floor').val(floor);
                         $('#bedroom').val(bedroom);
                         $('#bathroom').val(bathroom);
+                        $('#comment').val(comment);
                         $('#status').val(status);
                         $('.modal-title').html("<i class='fa fa-plus'></i> Edit Record");
                         $('#action').val('UPDATE');

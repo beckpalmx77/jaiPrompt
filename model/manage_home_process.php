@@ -32,6 +32,7 @@ if ($_POST["action"] === 'GET_DATA') {
             "bedroom" => $result['bedroom'],
             "bathroom" => $result['bathroom'],
             "img" => $result['img'],
+            "comment" => $result['comment'],
             "status" => $result['status']);
     }
 
@@ -62,27 +63,32 @@ if ($_POST["action"] === 'ADD') {
 
         $home_id = $_POST["home_id"];
         $home_model_name = $_POST["home_model_name"];
+        $project_id = $_POST["project_id"];
         $area = $_POST["area"];
-        $status = $_POST["status"];
-        $pgroup_id = $_POST["pgroup_id"];
-        $brand_id = $_POST["brand_id"];
         $floor = $_POST["floor"];
-        $picture = "product-001.png";
+        $bedroom = $_POST["bedroom"];
+        $bathroom = $_POST["bathroom"];
+        $img = "";
+        $comment = $_POST["comment"];
+        $status = $_POST["status"];
+
         $sql_find = "SELECT * FROM ims_home_model WHERE home_id = '" . $home_id . "'";
         $nRows = $conn->query($sql_find)->fetchColumn();
         if ($nRows > 0) {
             echo $dup;
         } else {
-            $sql = "INSERT INTO ims_home_model(home_id,home_model_name,area,pgroup_id,brand_id,floor,picture,status)
-            VALUES (:home_id,:home_model_name,:area,:pgroup_id,:brand_id,:floor,:picture,:status)";
+            $sql = "INSERT INTO ims_home_model(home_id,home_model_name,project_id,area,floor,bedroom,bathroom,img,comment,status)
+            VALUES (:home_id,:home_model_name,:project_id,:area,:floor,:bedroom,:bathroom,:img,:comment,:status)";
             $query = $conn->prepare($sql);
             $query->bindParam(':home_id', $home_id, PDO::PARAM_STR);
             $query->bindParam(':home_model_name', $home_model_name, PDO::PARAM_STR);
+            $query->bindParam(':project_id', $project_id, PDO::PARAM_STR);
             $query->bindParam(':area', $area, PDO::PARAM_STR);
-            $query->bindParam(':pgroup_id', $pgroup_id, PDO::PARAM_STR);
-            $query->bindParam(':brand_id', $brand_id, PDO::PARAM_STR);
             $query->bindParam(':floor', $floor, PDO::PARAM_STR);
-            $query->bindParam(':picture', $picture, PDO::PARAM_STR);
+            $query->bindParam(':bedroom', $bedroom, PDO::PARAM_STR);
+            $query->bindParam(':bathroom', $bathroom, PDO::PARAM_STR);
+            $query->bindParam(':img', $img, PDO::PARAM_STR);
+            $query->bindParam(':comment', $comment, PDO::PARAM_STR);
             $query->bindParam(':status', $status, PDO::PARAM_STR);
             $query->execute();
 
@@ -106,25 +112,42 @@ if ($_POST["action"] === 'UPDATE') {
         $id = $_POST["id"];
         $home_id = $_POST["home_id"];
         $home_model_name = $_POST["home_model_name"];
+        $project_id = $_POST["project_id"];
         $area = $_POST["area"];
-        $status = $_POST["status"];
-        $pgroup_id = $_POST["pgroup_id"];
-        $brand_id = $_POST["brand_id"];
         $floor = $_POST["floor"];
-        $picture = "product-001.png";
-        $sql_find = "SELECT * FROM ims_home_model WHERE home_id = '" . $home_id . "'";
+        $bedroom = $_POST["bedroom"];
+        $bathroom = $_POST["bathroom"];
+        $comment = $_POST["comment"];
+        $status = $_POST["status"];
+
+        $txt = $id . "|" . $home_id . "|" . $home_model_name . "|" . $home_model_name
+             . "|" . $project_id . "|" . $area . "|" . $floor . "|" . $bedroom
+        . "|" . $bathroom . "|" . $status ;
+
+        $my_file = fopen("HomeUpdate.txt", "w") or die("Unable to open file!");
+        fwrite($my_file, $txt);
+        fclose($my_file);
+
+        $sql_find = "SELECT * FROM ims_home_model WHERE id = '" . $id . "'";
         $nRows = $conn->query($sql_find)->fetchColumn();
         if ($nRows > 0) {
-            $sql_update = "UPDATE ims_home_model SET home_model_name=:home_model_name,area=:area,status=:status
-            ,pgroup_id=:pgroup_id,brand_id=:brand_id,floor=:floor,picture=:picture
-            WHERE id = :id";
+            $sql_update = "UPDATE ims_home_model SET home_id=:home_id,home_model_name=:home_model_name
+            ,project_id=:project_id,area=:area,floor=:floor,bedroom=:bedroom,bathroom=:bathroom,comment=:comment
+            ,status=:status WHERE id = :id";
+
+            $my_file = fopen("sql_update.txt", "w") or die("Unable to open file!");
+            fwrite($my_file, $sql_update);
+            fclose($my_file);
+
             $query = $conn->prepare($sql_update);
+            $query->bindParam(':home_id', $home_id, PDO::PARAM_STR);
             $query->bindParam(':home_model_name', $home_model_name, PDO::PARAM_STR);
+            $query->bindParam(':project_id', $project_id, PDO::PARAM_STR);
             $query->bindParam(':area', $area, PDO::PARAM_STR);
-            $query->bindParam(':pgroup_id', $pgroup_id, PDO::PARAM_STR);
-            $query->bindParam(':brand_id', $brand_id, PDO::PARAM_STR);
             $query->bindParam(':floor', $floor, PDO::PARAM_STR);
-            $query->bindParam(':picture', $picture, PDO::PARAM_STR);
+            $query->bindParam(':bedroom', $bedroom, PDO::PARAM_STR);
+            $query->bindParam(':bathroom', $bathroom, PDO::PARAM_STR);
+            $query->bindParam(':comment', $comment, PDO::PARAM_STR);
             $query->bindParam(':status', $status, PDO::PARAM_STR);
             $query->bindParam(':id', $id, PDO::PARAM_STR);
             $query->execute();
