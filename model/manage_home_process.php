@@ -121,14 +121,14 @@ if ($_POST["action"] === 'UPDATE') {
         $status = $_POST["status"];
 
         $txt = $id . "|" . $home_id . "|" . $home_model_name . "|" . $home_model_name
-             . "|" . $project_id . "|" . $area . "|" . $floor . "|" . $bedroom
-        . "|" . $bathroom . "|" . $status ;
+            . "|" . $project_id . "|" . $area . "|" . $floor . "|" . $bedroom
+            . "|" . $bathroom . "|" . $status;
 
         $my_file = fopen("HomeUpdate.txt", "w") or die("Unable to open file!");
         fwrite($my_file, $txt);
         fclose($my_file);
 
-        $sql_find = "SELECT * FROM ims_home_model WHERE id = '" . $id . "'";
+        $sql_find = "SELECT * FROM ims_home_model WHERE id = " . $id;
         $nRows = $conn->query($sql_find)->fetchColumn();
         if ($nRows > 0) {
             $sql_update = "UPDATE ims_home_model SET home_id=:home_id,home_model_name=:home_model_name
@@ -219,7 +219,7 @@ if ($_POST["action"] === 'GET_HOME') {
 ## Fetch records
     $sql_fetch = "SELECT ims_home_model.*,proj.project_name as project_name FROM ims_home_model
     left join ims_project proj 
-    on proj.project_id = ims_home_model.project_id" ;
+    on proj.project_id = ims_home_model.project_id";
 
     $stmt = $conn->prepare($sql_fetch . " WHERE 1 " . $searchQuery
         . " ORDER BY " . $columnName . " " . $columnSortOrder . " LIMIT :limit,:offset");

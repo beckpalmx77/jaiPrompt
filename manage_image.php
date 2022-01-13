@@ -36,39 +36,59 @@ if (strlen($_SESSION['alogin']) == "") {
                                 <div class="card-body">
                                     <section class="container-fluid">
 
-                                        <form method="post" id="MainrecordForm">
-                                            <input type="hidden" class="form-control" id="img_array" name="img_array"
-                                                   value="">
+                                        <form method="post" id="ImageForm" enctype="multipart/form-data">
+                                            <input type="hidden" class="form-control" id="img_array" name="img_array" value="">
+                                            <input type="hidden" class="form-control" id="file_up" name="file_up" value="">
+                                            <input type="hidden" class="form-control" id="table_name" name="table_name" value="">
                                             <div class="modal-body">
                                                 <div class="modal-body">
                                                     <div class="form-group row">
+                                                        <!--div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="default"
+                                                                           class="col-sm-12 control-label">เลือกรูปภาพ
+                                                                        นามสกุล jpg หรือ png เท่านั้น</label>
+                                                                    <img id="img_file"
+                                                                         src=""
+                                                                         width="200" height="200" alt="">
+                                                                    <input type='file' name="fileUpload" id="fileUpload"
+                                                                           accept="image/png, image/jpeg"
+                                                                           onchange="readURL(this);"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <button type='button' name='btnAdd' id='btnAdd'
+                                                                            class='btn btn-primary btn-xs'>Add Image
+                                                                        (เพิ่มรูปภาพ)
+                                                                        <i class="fa fa-plus"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div-->
 
-                                                    <button type='button' name='btnAdd' id='btnAdd'
-                                                            class='btn btn-primary btn-xs'>Add Image (เพิ่มรูปภาพ)
-                                                        <i class="fa fa-plus"></i>
-                                                    </button>
+                                                        <div class="form-group row">
+                                                            <div id="myDIV"></div>
+                                                        </div>
+
                                                     </div>
-
-                                                    <div class="form-group row">
-                                                        <div id="myDIV"></div>
-                                                    </div>
-
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <input type="hidden" name="id" id="id"/>
-                                                <input type="hidden" name="save_status" id="save_status"/>
-                                                <input type="hidden" name="action" id="action"
-                                                       value=""/>
-                                                <button type="button" class="btn btn-primary"
-                                                        id="btnSave">Save <i
-                                                            class="fa fa-check"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-danger"
-                                                        id="btnClose">Close <i
-                                                            class="fa fa-window-close"></i>
-                                                </button>
-                                            </div>
+
+                                                <div class="modal-footer">
+                                                    <input type="hidden" name="id" id="id"/>
+                                                    <input type="hidden" name="save_status" id="save_status"/>
+                                                    <input type="hidden" name="action" id="action"
+                                                           value=""/>
+                                                    <button type="button" class="btn btn-primary"
+                                                            id="btnSave">Save <i
+                                                                class="fa fa-check"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger"
+                                                            id="btnClose">Close <i
+                                                                class="fa fa-window-close"></i>
+                                                    </button>
+                                                </div>
                                         </form>
                                     </section>
                                 </div>
@@ -210,6 +230,50 @@ if (strlen($_SESSION['alogin']) == "") {
     </script>
 
     <script>
+        $(document).ready(function () {
+            $('input[type="file"]').change(function (e) {
+                let fileName = e.target.files[0].name;
+                $('#file_up').val(fileName);
+                let img_array = $('#img_array').val();
+
+                if (img_array !== "") {
+                    $('#img_array').val(img_array + "," + fileName);
+                } else {
+                    $('#img_array').val(fileName);
+                }
+            });
+        });
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#btnAdd").click(function () {
+                let filename_upload = $('#file_up').val();
+                let filename_save = $('#img_array').val();
+                $('#action').val("UPDATE_IMAGE");
+                $('#table_name').val("ims_home_model");
+
+                if (filename_upload!=='') {
+                    alert("OK = " + filename_upload + " | " + filename_save);
+                    let formData = $('#ImageForm').serialize();
+                    $.ajax({
+                        url: 'model/manage_image_process.php',
+                        method: "POST",
+                        data: formData,
+                        success: function (data) {
+                            alertify.success(data);
+                        }
+                    })
+                } else {
+                    alert("Not OK");
+                }
+
+            });
+        });
+    </script>
+
+    <script>
         function Load_Image() {
             document.getElementById("myDIV").innerHTML = "";
             let img = $("#img_array").val().split(",");
@@ -218,7 +282,7 @@ if (strlen($_SESSION['alogin']) == "") {
                 if (img[i] !== "") {
                     //img_gallery = img_gallery + "<img src='gallery/" + img[i] + "' style=' width:100%'  onclick='Delete_Image(this);'>&nbsp;";
                     img_gallery = img_gallery + "<img src='gallery/" + img[i] + "' style=' width:100%'>&nbsp;";
-                    img_gallery = img_gallery + "<a href='javascript:Delete_Image("+ i + ")' class='icon-block'>ลบ <i class='fa fa-times' aria-hidden='true'></i></a>";
+                    img_gallery = img_gallery + "<a href='javascript:Delete_Image(" + i + ")' class='icon-block'>ลบ <i class='fa fa-times' aria-hidden='true'></i></a>";
                 }
             }
             img_gallery = img_gallery + "</div></div></div>";
@@ -245,7 +309,7 @@ if (strlen($_SESSION['alogin']) == "") {
         function Check_Image() {
             let img = $('#img_array').val();
 
-            if (img==='') {
+            if (img === '') {
                 let img_gallery = "&nbsp;<img src='gallery/upload.png' style=' width:100%'>&nbsp;";
                 document.getElementById("myDIV").innerHTML = img_gallery;
             }
@@ -266,6 +330,20 @@ if (strlen($_SESSION['alogin']) == "") {
                 Check_Image();
             }
 
+        }
+    </script>
+
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#img_file')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
         }
     </script>
 
