@@ -20,7 +20,7 @@ if (strlen($_SESSION['alogin']) == "") {
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800"><span id="title"></span></h1>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="Dashboard.php">Home</a></li>
+                            <li class="breadcrumb-item"><a href="<?php echo $_SESSION['dashboard_page']?>">Home</a></li>
                             <li class="breadcrumb-item"><span id="main_menu"></li>
                             <li class="breadcrumb-item active"
                                 aria-current="page"><span id="sub_menu"></li>

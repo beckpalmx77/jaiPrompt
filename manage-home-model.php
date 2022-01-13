@@ -28,7 +28,7 @@ if (strlen($_SESSION['alogin']) == "") {
                         <input type="hidden" id="main_menu" value="<?php echo urldecode($_GET['m']) ?>">
                         <input type="hidden" id="sub_menu" value="<?php echo urldecode($_GET['s']) ?>">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="Dashboard.php">Home</a></li>
+                            <li class="breadcrumb-item"><a href="<?php echo $_SESSION['dashboard_page']?>">Home</a></li>
                             <li class="breadcrumb-item"><?php echo urldecode($_GET['m']) ?></li>
                             <li class="breadcrumb-item active"
                                 aria-current="page"><?php echo urldecode($_GET['s']) ?></li>
@@ -201,9 +201,9 @@ if (strlen($_SESSION['alogin']) == "") {
                                                                     </div>
                                                                 </div>
 
-                                                                <div class="form-group row">
+                                                                <!--div class="form-group row">
                                                                     <p id="myDIV"></p>
-                                                                </div>
+                                                                </div-->
 
                                                                 <div class="form-group">
                                                                     <label for="status"
@@ -454,7 +454,7 @@ if (strlen($_SESSION['alogin']) == "") {
                         $('#action').val('UPDATE');
                         $('#save').val('Save');
 
-
+/*
                         let img_gallery = "<div class='card'><div class='card-body'><div class='card-columns'>";
 
                         for (let i = 0; i < img_show.length; i++) {
@@ -468,6 +468,8 @@ if (strlen($_SESSION['alogin']) == "") {
                         //alert(img_gallery);
 
                         document.getElementById("myDIV").innerHTML = img_gallery;
+
+ */
 
                     }
                 },

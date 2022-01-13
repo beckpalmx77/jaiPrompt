@@ -9,7 +9,7 @@ include('config/lang.php');
 
 <!-- Sidebar -->
 <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="Dashboard.php">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo $_SESSION['dashboard_page']?>">
         <div class="sidebar-brand-icon">
             <img src="img/logo/logo2.png">
         </div>

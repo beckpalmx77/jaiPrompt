@@ -8,7 +8,7 @@ include('config/connect_db.php');
 
 <!-- Sidebar -->
 <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="Dashboard.php">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo $_SESSION['dashboard_page']?>">
         <div class="sidebar-brand-icon">
             <img src="img/logo/logo2.png">
         </div>
@@ -16,7 +16,7 @@ include('config/connect_db.php');
     </a>
     <hr class="sidebar-divider my-0">
     <li class="nav-item active">
-        <a class="nav-link" href="Dashboard.php">
+        <a class="nav-link" href="<?php echo $_SESSION['dashboard_page']?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>

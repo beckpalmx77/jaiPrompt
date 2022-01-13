@@ -20,7 +20,8 @@ if (strlen($_SESSION['alogin']) == "") {
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800"><span id="title"></span></h1>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="Dashboard.php">Home</a></li>
+                            <li class="breadcrumb-item"><a href="<?php echo $_SESSION['dashboard_page'] ?>">Home</a>
+                            </li>
                             <li class="breadcrumb-item"><span id="main_menu"></li>
                             <li class="breadcrumb-item active"
                                 aria-current="page"><span id="sub_menu"></li>
@@ -36,91 +37,20 @@ if (strlen($_SESSION['alogin']) == "") {
                                     <section class="container-fluid">
 
                                         <form method="post" id="MainrecordForm">
-                                            <input type="hidden" class="form-control" id="KeyAddData" name="KeyAddData"
+                                            <input type="hidden" class="form-control" id="img_array" name="img_array"
                                                    value="">
                                             <div class="modal-body">
                                                 <div class="modal-body">
                                                     <div class="form-group row">
-                                                        <div class="col-sm-2">
-                                                            <label for="doc_no"
-                                                                   class="control-label">เลขที่เอกสาร</label>
-                                                            <input type="text" class="form-control"
-                                                                   id="doc_no" name="doc_no"
-                                                                   readonly="true"
-                                                                   placeholder="เลขที่เอกสาร">
-                                                        </div>
-
-                                                        <div class="col-sm-2">
-                                                            <label for="doc_date"
-                                                                   class="control-label">วันที่</label>
-                                                            <input type="text" class="form-control"
-                                                                   id="doc_date"
-                                                                   name="doc_date"
-                                                                   required="required"
-                                                                   readonly="true"
-                                                                   placeholder="วันที่">
-                                                            <div class="input-group-addon">
-                                                                <span class="glyphicon glyphicon-th"></span>
-                                                            </div>
-                                                        </div>
-
-                                                        <input type="hidden" class="form-control"
-                                                               id="customer_id"
-                                                               name="customer_id">
-                                                        <div class="col-sm-6">
-                                                            <label for="customer_name"
-                                                                   class="control-label">ชื่อลูกค้า</label>
-                                                            <input type="text" class="form-control"
-                                                                   id="customer_name"
-                                                                   name="customer_name"
-                                                                   required="required"
-                                                                   placeholder="ชื่อลูกค้า">
-                                                        </div>
-                                                        <div class="col-sm-2">
-                                                            <label for="CusModal"
-                                                                   class="control-label"> เลือกชื่อลูกค้า </label>
-                                                            <a data-toggle="modal" href="#SearchCusModal"
-                                                               class="btn btn-primary">
-                                                                Click <i class="fa fa-search"
-                                                                         aria-hidden="true"></i>
-                                                            </a>
-
-                                                        </div>
-                                                    </div>
 
                                                     <button type='button' name='btnAdd' id='btnAdd'
-                                                            class='btn btn-primary btn-xs'>Add เพิ่มรายการสินค้า
+                                                            class='btn btn-primary btn-xs'>Add Image (เพิ่มรูปภาพ)
                                                         <i class="fa fa-plus"></i>
                                                     </button>
+                                                    </div>
 
-                                                    <table cellpadding="0" cellspacing="0" border="0"
-                                                           class="display"
-                                                           id="TableOrderDetailList"
-                                                           width="100%">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th>สินค้า</th>
-                                                            <th>จำนวน</th>
-                                                            <th>หน่วยนับ</th>
-                                                            <th>ราคา/หน่วย</th>
-                                                            <th>รวมราคา</th>
-                                                            <th>Action</th>
-                                                            <th>Action</th>
-                                                        </tr>
-                                                        </thead>
-                                                    </table>
-
-                                                    <div class="form-group">
-                                                        <label for="status"
-                                                               class="control-label">Status</label>
-                                                        <select id="status" name="status"
-                                                                class="form-control"
-                                                                data-live-search="true"
-                                                                title="Please select">
-                                                            <option>Active</option>
-                                                            <option>Inactive</option>
-                                                        </select>
+                                                    <div class="form-group row">
+                                                        <div id="myDIV"></div>
                                                     </div>
 
                                                 </div>
@@ -140,148 +70,7 @@ if (strlen($_SESSION['alogin']) == "") {
                                                 </button>
                                             </div>
                                         </form>
-
-                                        <div class="modal fade" id="recordModal">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title">Modal title</h4>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                                aria-hidden="true">×
-                                                        </button>
-                                                    </div>
-                                                    <form method="post" id="recordForm">
-
-                                                        <div class="form-group row">
-                                                            <div class="col-sm-5">
-                                                                <input type="hidden" class="form-control"
-                                                                       id="KeyAddDetail"
-                                                                       name="KeyAddDetail" value="">
-                                                            </div>
-                                                            <div class="col-sm-5">
-                                                                <input type="hidden" class="form-control"
-                                                                       id="doc_no_detail"
-                                                                       name="doc_no_detail" value="">
-                                                            </div>
-                                                            <div class="col-sm-5">
-                                                                <input type="hidden" class="form-control"
-                                                                       id="doc_date_detail"
-                                                                       name="doc_date_detail" value="">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="modal-body">
-                                                            <div class="modal-body">
-
-                                                                <div class="form-group row">
-                                                                    <div class="col-sm-5">
-                                                                        <label for="product_id"
-                                                                               class="control-label">รหัสสินค้า/วัสดุ</label>
-                                                                        <input type="product_id"
-                                                                               class="form-control"
-                                                                               id="product_id" name="product_id"
-                                                                               required="required"
-                                                                               readonly="true"
-                                                                               placeholder="รหัสสินค้า/วัสดุ">
-                                                                    </div>
-
-                                                                    <div class="col-sm-5">
-                                                                        <label for="name_t"
-                                                                               class="control-label">ชื่อสินค้า/วัสดุ</label>
-                                                                        <input type="text" class="form-control"
-                                                                               id="name_t"
-                                                                               name="name_t"
-                                                                               required="required"
-                                                                               readonly="true"
-                                                                               placeholder="ชื่อสินค้า/วัสดุ">
-                                                                    </div>
-
-                                                                    <div class="col-sm-2">
-                                                                        <label for="quantity"
-                                                                               class="control-label">เลือก</label>
-
-                                                                        <a data-toggle="modal"
-                                                                           href="#SearchProductModal"
-                                                                           class="btn btn-primary">
-                                                                            Click <i class="fa fa-search"
-                                                                                     aria-hidden="true"></i>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group row">
-                                                                    <div class="col-sm-5">
-                                                                        <label for="quantity"
-                                                                               class="control-label">จำนวน</label>
-                                                                        <input type="number" class="form-control"
-                                                                               id="quantity"
-                                                                               name="quantity"
-                                                                               required="required"
-                                                                               placeholder="จำนวน">
-                                                                    </div>
-                                                                    <input type="hidden" class="form-control"
-                                                                           id="unit_id"
-                                                                           name="unit_id">
-                                                                    <div class="col-sm-5">
-                                                                        <label for="unit_name"
-                                                                               class="control-label">หน่วยนับ</label>
-                                                                        <input type="text" class="form-control"
-                                                                               id="unit_name"
-                                                                               name="unit_name"
-                                                                               required="required"
-                                                                               readonly="true"
-                                                                               placeholder="หน่วยนับ">
-                                                                    </div>
-
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <div class="col-sm-5">
-                                                                        <label for="price"
-                                                                               class="control-label">ราคา/หน่วย</label>
-                                                                        <input type="number" class="form-control"
-                                                                               id="price"
-                                                                               name="price"
-                                                                               required="required"
-                                                                               placeholder="ราคา/หน่วย">
-                                                                    </div>
-                                                                    <div class="col-sm-5">
-                                                                        <label for="total_price"
-                                                                               class="control-label">ราคารวม</label>
-                                                                        <input type="number" class="form-control"
-                                                                               id="total_price"
-                                                                               name="total_price"
-                                                                               required="required"
-                                                                               placeholder="ราคารวม">
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="modal-footer">
-                                                            <input type="hidden" name="id" id="id"/>
-                                                            <input type="hidden" name="detail_id" id="detail_id"/>
-                                                            <input type="hidden" name="action_detail"
-                                                                   id="action_detail" value=""/>
-                                                            <span class="icon-input-btn">
-                                                                <i class="fa fa-check"></i>
-                                                            <input type="submit" name="save" id="save"
-                                                                   class="btn btn-primary" value="Save"/>
-                                                            </span>
-                                                            <button type="button" class="btn btn-danger"
-                                                                    data-dismiss="modal">Close <i
-                                                                        class="fa fa-window-close"></i>
-                                                            </button>
-                                                        </div>
-                                                    </form>
-
-                                                </div>
-                                            </div>
-                                        </div>
-
                                     </section>
-
-
                                 </div>
 
                             </div>
@@ -392,6 +181,7 @@ if (strlen($_SESSION['alogin']) == "") {
     </script>
 
     <script type="text/javascript">
+
         let queryString = new Array();
         $(function () {
             if (queryString.length == 0) {
@@ -409,36 +199,71 @@ if (strlen($_SESSION['alogin']) == "") {
             $("#title").html(data);
             $("#main_menu").html(queryString["main_menu"]);
             $("#sub_menu").html(queryString["sub_menu"]);
-
-            let img = queryString["img"].split(",");
-
-            //let del_img = "A001_3.jpg";
-            //alert("Array Before = " + img.length);
-            //delete_image(img, del_img);
-
             $('#action').val(queryString["action"]);
+            $("#img_array").val(queryString["img"]);
 
+            Load_Image();
+            Check_Image();
 
         });
+
     </script>
 
     <script>
-        function delete_image(img, del_img) {
-
-            //alert("del_img = " + del_img);
-
-            let index = img.indexOf(del_img);
-
-            //alert("Del index = " + index);
-            if (index > -1) {
-                img.splice(index, 1);
+        function Load_Image() {
+            document.getElementById("myDIV").innerHTML = "";
+            let img = $("#img_array").val().split(",");
+            let img_gallery = "&nbsp;<div class='card'><div class='card-body'><div class='card-columns'>";
+            for (let i = 0; i < img.length; i++) {
+                if (img[i] !== "") {
+                    //img_gallery = img_gallery + "<img src='gallery/" + img[i] + "' style=' width:100%'  onclick='Delete_Image(this);'>&nbsp;";
+                    img_gallery = img_gallery + "<img src='gallery/" + img[i] + "' style=' width:100%'>&nbsp;";
+                    img_gallery = img_gallery + "<a href='javascript:Check_Image1("+ i + ")' class='icon-block'>ลบ <i class='fa fa-times' aria-hidden='true'></i></a>";
+                }
             }
-            //alert("After Del Array = " + img.length);
-            //alert(img);
+            img_gallery = img_gallery + "</div></div></div>";
+            document.getElementById("myDIV").innerHTML = img_gallery;
         }
-
     </script>
 
+    <script>
+        function Delete_Image_Bak(del_img) {
+            let img = $('#img_array').val().split(",");
+            let filename = del_img.src.split("/").pop();
+            let index = img.indexOf(filename);
+            if (index !== -1) {
+                img.splice(index, 1);
+                $('#img_array').val(img);
+            }
+            Load_Image();
+            Check_Image();
+        }
+    </script>
+
+    <script>
+        function Check_Image() {
+            let img = $('#img_array').val();
+
+            if (img==='') {
+                let img_gallery = "&nbsp;<img src='gallery/upload.png' style=' width:100%'>&nbsp;";
+                document.getElementById("myDIV").innerHTML = img_gallery;
+            }
+
+        }
+    </script>
+
+
+    <script>
+        function Delete_Image(index) {
+            let img = $('#img_array').val().split(",");
+            if (index !== -1) {
+                img.splice(index, 1);
+                $('#img_array').val(img);
+            }
+            Load_Image();
+            Check_Image();
+        }
+    </script>
 
     </body>
 

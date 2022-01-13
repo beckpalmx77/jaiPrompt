@@ -23,7 +23,7 @@ include('includes/Header.php');
                 },
                 function (response) {
                     if (response == 1) {
-                        document.location = 'dashboard.php';
+                        document.location = '<?php echo $_SESSION['dashboard_page']?>';
                     } else {
                         alertify.error("เข้าระบบไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง Invalid Details");
                     }
