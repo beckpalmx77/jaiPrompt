@@ -12,38 +12,78 @@ include('includes/Header.php');
 </style>
 
 <script>
+
+    $(document).ready(function () {
+        let username = '<?php if (isset($_COOKIE["username"])) {
+            echo $_COOKIE["username"];
+        } ?>';
+        let password = '<?php if (isset($_COOKIE["password"])) {
+            echo $_COOKIE["password"];
+        } ?>';
+        let remember_chk = '<?php echo $_COOKIE["remember_chk"]?>';
+
+        $("#username").val(username);
+        $("#password").val(password);
+
+        if (remember_chk === "check") {
+            $("#remember").prop('checked', true); // Checked
+        }
+
+    });
+
+</script>
+
+<script>
     $(document).ready(function () {
         $("button").click(function () {
-            let username = $("#email").val();
+            let username = $("#username").val();
             let password = $("#password").val();
-            $.post("login_process.php",
-                {
-                    username: username,
-                    password: password
-                },
-                function (response) {
-                    if (response !== 0) {
-                        let dashboard_page = response ;
-                        document.location = dashboard_page;
-                    } else {
-                        alertify.error("เข้าระบบไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง Invalid Details");
-                    }
+            let remember = "";
 
+            if ($("#remember").prop("checked")) {
+                remember = $("#remember").val();
+            }
+
+            //alert("check remember = " + remember );
+
+            if (username != "" && password != "") {
+                $.ajax
+                ({
+                    type: 'post',
+                    url: 'login_process.php',
+                    data: {
+                        username: username,
+                        password: password,
+                        remember: remember,
+                    },
+                    success: function (response) {
+                        if (response !== "0") {
+                            window.location.href = response;
+                        } else {
+                            alert("เข้าระบบไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง");
+                            window.location.href = "login.php";
+                        }
+                    }
                 });
+            } else {
+                alert("Please Fill All The Details");
+            }
+
+            return false;
         });
     });
+
 </script>
 
 
 <script type='text/javascript'>
-    $(document).ready(function(){
-        $('#togglePassword').click(function(){
+    $(document).ready(function () {
+        $('#togglePassword').click(function () {
             //alert($(this).is(':checked'));
-            $('#password').attr('type')==='password' ? $('#password').attr('type', 'text') : $('#password').attr('type', 'password');
+            $('#password').attr('type') === 'password' ? $('#password').attr('type', 'text') : $('#password').attr('type', 'password');
         });
     });
 </script>
-
 
 
 <body class="bg-gradient-login">
@@ -61,23 +101,40 @@ include('includes/Header.php');
                                     <h1 class="h4 text-gray-900 mb-4">Login</h1>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="email"
+                                    <input type="text" class="form-control" id="username"
+                                           value=""
                                            placeholder="Enter User Name">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control" id="password"
+                                           value=""
                                            placeholder="Password">
                                 </div>
+                                <div class="form-group row">
 
-                                <div class="form-group">
-                                    <i class="far fa-eye" id="togglePassword" style="cursor: pointer;"></i> Show/Hide Password
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <i class="far fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+                                            Show/Hide Password
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="on" id="remember"
+                                                   name="remember">
+                                            <label class="form-check-label" for="remember">
+                                                Remember Me
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
+
 
                                 <div class="form-group">
                                     <button type="button" name="login-submit" id="login-submit" tabindex="4"
                                             class="form-control btn btn-primary">
                                             <span class="spinner">
-                                                <i class="icon-spin icon-refresh" id="spinner"></i></span>  Log In
+                                                <i class="icon-spin icon-refresh" id="spinner"></i></span> Log In
                                 </div>
                             </div>
                         </div>

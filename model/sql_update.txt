@@ -1,3 +1,0 @@
-UPDATE ims_home_model SET home_id=:home_id,home_model_name=:home_model_name
-            ,project_id=:project_id,area=:area,floor=:floor,bedroom=:bedroom,bathroom=:bathroom,comment=:comment
-            ,status=:status WHERE id = :id

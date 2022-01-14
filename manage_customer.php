@@ -130,6 +130,15 @@ if (strlen($_SESSION['alogin']) == "") {
                                                                            placeholder="โทรศัพท์">
                                                                 </div>
 
+                                                                <div class="form-group">
+                                                                    <label for="email"
+                                                                           class="control-label">Email Address</label>
+                                                                    <input type="email" class="form-control" id="email"
+                                                                           name="email"
+                                                                           required="required"
+                                                                           placeholder="Email Address">
+                                                                </div>
+
 
                                                                 <div class="form-group">
                                                                     <label for="status"
@@ -313,6 +322,7 @@ if (strlen($_SESSION['alogin']) == "") {
                 $('#customer_name').val("");
                 $('#address').val("");
                 $('#phone').val("");
+                $('#email').val("");
                 $('.modal-title').html("<i class='fa fa-plus'></i> ADD Record");
                 $('#action').val('ADD');
                 $('#save').val('Save');
@@ -339,6 +349,7 @@ if (strlen($_SESSION['alogin']) == "") {
                         let customer_name = response[i].customer_name;
                         let address = response[i].address;
                         let phone = response[i].phone;
+                        let email = response[i].email;
                         let status = response[i].status;
 
                         $('#recordModal').modal('show');
@@ -347,6 +358,7 @@ if (strlen($_SESSION['alogin']) == "") {
                         $('#customer_name').val(customer_name);
                         $('#address').val(address);
                         $('#phone').val(phone);
+                        $('#email').val(email);
                         $('#status').val(status);
                         $('.modal-title').html("<i class='fa fa-plus'></i> Edit Record");
                         $('#action').val('UPDATE');

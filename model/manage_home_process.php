@@ -37,7 +37,7 @@ if ($_POST["action"] === 'GET_DATA') {
     }
 
     $home_get = json_encode($return_arr);
-    file_put_contents("home_get.json", $home_get);
+    //file_put_contents("home_get.json", $home_get);
     echo json_encode($return_arr);
 
 }
@@ -124,9 +124,9 @@ if ($_POST["action"] === 'UPDATE') {
             . "|" . $project_id . "|" . $area . "|" . $floor . "|" . $bedroom
             . "|" . $bathroom . "|" . $status;
 
-        $my_file = fopen("HomeUpdate.txt", "w") or die("Unable to open file!");
-        fwrite($my_file, $txt);
-        fclose($my_file);
+        //$my_file = fopen("HomeUpdate.txt", "w") or die("Unable to open file!");
+        //fwrite($my_file, $txt);
+        //fclose($my_file);
 
         $sql_find = "SELECT * FROM ims_home_model WHERE id = " . $id;
         $nRows = $conn->query($sql_find)->fetchColumn();
@@ -273,7 +273,7 @@ if ($_POST["action"] === 'GET_HOME') {
     );
 
     $home = json_encode($response);
-    file_put_contents("home.json", $home);
+    //file_put_contents("home.json", $home);
 
     echo json_encode($response);
 

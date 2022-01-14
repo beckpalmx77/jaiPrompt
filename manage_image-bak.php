@@ -46,7 +46,7 @@ if (strlen($_SESSION['alogin']) == "") {
                                             <div class="modal-body">
                                                 <div class="modal-body">
                                                     <div class="form-group row">
-                                                        <div class="row">
+                                                        <!--div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label for="default"
@@ -55,20 +55,21 @@ if (strlen($_SESSION['alogin']) == "") {
                                                                     <img id="img_file"
                                                                          src=""
                                                                          width="200" height="200" alt="">
-                                                                    <input type='file' id='file' name='file'
-                                                                           class='file'
+                                                                    <input type='file' name="fileUpload" id="fileUpload"
                                                                            accept="image/png, image/jpeg"
                                                                            onchange="readURL(this);"/>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <input type="submit" name="submit"
-                                                                           value="เพิ่มรูปภาพ Add Image"
-                                                                           class="btn btn-primary btn-xs">
+                                                                    <button type='button' name='btnAdd' id='btnAdd'
+                                                                            class='btn btn-primary btn-xs'>Add Image
+                                                                        (เพิ่มรูปภาพ)
+                                                                        <i class="fa fa-plus"></i>
+                                                                    </button>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div-->
 
                                                         <div class="form-group row">
                                                             <div id="myDIV"></div>
@@ -82,6 +83,10 @@ if (strlen($_SESSION['alogin']) == "") {
                                                     <input type="hidden" name="save_status" id="save_status"/>
                                                     <input type="hidden" name="action" id="action"
                                                            value=""/>
+                                                    <button type="button" class="btn btn-primary"
+                                                            id="btnSave">Save <i
+                                                                class="fa fa-check"></i>
+                                                    </button>
                                                     <button type="button" class="btn btn-danger"
                                                             id="btnClose">Close <i
                                                                 class="fa fa-window-close"></i>
@@ -219,7 +224,6 @@ if (strlen($_SESSION['alogin']) == "") {
             $("#sub_menu").html(queryString["sub_menu"]);
             $('#action').val(queryString["action"]);
             $("#img_array").val(queryString["img"]);
-            $("#id").val(queryString["id"]);
 
             Load_Image();
             Check_Image();
@@ -270,26 +274,6 @@ if (strlen($_SESSION['alogin']) == "") {
 
             });
         });
-    </script>
-
-    <script>
-        $('#ImageForm')
-            .submit(function (e) {
-                $('#action').val("UPDATE_IMAGE");
-                $('#table_name').val("ims_home_model");
-                $.ajax({
-                    url: 'model/manage_image_process.php',
-                    type: 'POST',
-                    data: new FormData(this),
-                    processData: false,
-                    contentType: false,
-                    success: function (message) {
-                        Load_Image();
-                        alertify.success(message);
-                    }
-                });
-                e.preventDefault();
-            });
     </script>
 
     <script>
@@ -344,29 +328,32 @@ if (strlen($_SESSION['alogin']) == "") {
                 if (index !== -1) {
                     img.splice(index, 1);
                     $('#img_array').val(img);
-                    Delete_Image_DB();
                 }
+                Delete_Image_DB();
                 Load_Image();
                 Check_Image();
             }
+
         }
     </script>
+
 
     <script>
 
         function Delete_Image_DB() {
+
             $('#action').val("DELETE_IMAGE");
             $('#table_name').val("ims_home_model");
-            let formData = $('#ImageForm').serialize();
-            //alert(formData);
-            $.ajax({
-                url: 'model/manage_image_process.php',
-                method: "POST",
-                data: formData,
-                success: function (data) {
-                    alertify.success(data);
-                }
-            });
+                let formData = $('#ImageForm').serialize();
+                alert(formData);
+                $.ajax({
+                    url: 'model/manage_image_process.php',
+                    method: "POST",
+                    data: formData,
+                    success: function (data) {
+                        alertify.success(data);
+                    }
+                });
         }
 
     </script>

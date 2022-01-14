@@ -19,6 +19,7 @@ if ($_POST["action"] === 'GET_DATA') {
             "customer_name" => $result['customer_name'],
             "address" => $result['address'],
             "phone" => $result['phone'],
+            "email" => $result['email'],
             "status" => $result['status']);
     }
 
@@ -45,6 +46,7 @@ if ($_POST["action"] === 'ADD') {
         $customer_name = $_POST["customer_name"];
         $address = $_POST["address"];
         $phone = $_POST["phone"];
+        $email = $_POST["email"];
         $status = $_POST["status"];
         $sql_find = "SELECT * FROM ims_customer WHERE customer_name = '" . $customer_name . "'";
 
@@ -52,13 +54,14 @@ if ($_POST["action"] === 'ADD') {
         if ($nRows > 0) {
             echo $dup;
         } else {
-            $sql = "INSERT INTO ims_customer(customer_id,customer_name,address,phone,status) 
-            VALUES (:customer_id,:customer_name,:address,:phone,:status)";
+            $sql = "INSERT INTO ims_customer(customer_id,customer_name,address,phone,email,status) 
+            VALUES (:customer_id,:customer_name,:address,:phone,:email,:status)";
             $query = $conn->prepare($sql);
             $query->bindParam(':customer_id', $customer_id, PDO::PARAM_STR);
             $query->bindParam(':customer_name', $customer_name, PDO::PARAM_STR);
             $query->bindParam(':address', $address, PDO::PARAM_STR);
             $query->bindParam(':phone', $phone, PDO::PARAM_STR);
+            $query->bindParam(':email', $email, PDO::PARAM_STR);
             $query->bindParam(':status', $status, PDO::PARAM_STR);
             $query->execute();
             $lastInsertId = $conn->lastInsertId();
@@ -80,17 +83,19 @@ if ($_POST["action"] === 'UPDATE') {
         $customer_name = $_POST["customer_name"];
         $address = $_POST["address"];
         $phone = $_POST["phone"];
+        $email = $_POST["email"];
         $status = $_POST["status"];
         $sql_find = "SELECT * FROM ims_customer WHERE customer_id = '" . $customer_id . "'";
         $nRows = $conn->query($sql_find)->fetchColumn();
         if ($nRows > 0) {
             $sql_update = "UPDATE ims_customer SET customer_name=:customer_name
-            ,address=:address,phone=:phone,status=:status
+            ,address=:address,phone=:phone,email=:email,status=:status
             WHERE id = :id";
             $query = $conn->prepare($sql_update);
             $query->bindParam(':customer_name', $customer_name, PDO::PARAM_STR);
             $query->bindParam(':address', $address, PDO::PARAM_STR);
             $query->bindParam(':phone', $phone, PDO::PARAM_STR);
+            $query->bindParam(':email', $email, PDO::PARAM_STR);
             $query->bindParam(':status', $status, PDO::PARAM_STR);
             $query->bindParam(':id', $id, PDO::PARAM_STR);
             $query->execute();
