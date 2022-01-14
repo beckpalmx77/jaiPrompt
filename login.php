@@ -128,8 +128,6 @@ include('includes/Header.php');
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <div class="form-group">
                                     <button type="button" name="login-submit" id="login-submit" tabindex="4"
                                             class="form-control btn btn-primary">
