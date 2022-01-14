@@ -43,7 +43,7 @@ include('includes/Header.php');
             if ($("#remember").prop("checked")) {
                 remember = $("#remember").val();
             }
-            
+
             if (username != "" && password != "") {
                 $.ajax
                 ({
