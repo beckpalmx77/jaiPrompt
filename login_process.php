@@ -32,14 +32,14 @@ if ($query->rowCount() == 1) {
             $_SESSION['dashboard_page'] = $result->dashboard_page . ".php";
             $_SESSION['system_name'] = $system_name;
 
-            if($remember == "on") { // ถ้าติ๊กถูก Login ตลอดไป ให้ทำการสร้าง cookie
-                setcookie ("username",$_POST["username"],time()+ 3600);
-                setcookie ("password",$_POST["password"],time()+ 3600);
-                setcookie ("remember_chk","check",time()+ 3600);
+            if ($remember == "on") { // ถ้าติ๊กถูก Login ตลอดไป ให้ทำการสร้าง cookie
+                setcookie("username", $_POST["username"], time() + 3600);
+                setcookie("password", $_POST["password"], time() + 3600);
+                setcookie("remember_chk", "check", time() + 3600);
             } else {
-                setcookie("username","");
-                setcookie("password","");
-                setcookie("remember_chk","");
+                setcookie("username", "");
+                setcookie("password", "");
+                setcookie("remember_chk", "");
             }
             echo $result->dashboard_page . ".php";
 

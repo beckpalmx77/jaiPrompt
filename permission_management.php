@@ -24,7 +24,8 @@ if (strlen($_SESSION['alogin']) == "") {
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800"><?php echo urldecode($_GET['s']) ?></h1>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="<?php echo $_SESSION['dashboard_page']?>">Home</a></li>
+                            <li class="breadcrumb-item"><a href="<?php echo $_SESSION['dashboard_page'] ?>">Home</a>
+                            </li>
                             <li class="breadcrumb-item"><?php echo urldecode($_GET['m']) ?></li>
                             <li class="breadcrumb-item active"
                                 aria-current="page"><?php echo urldecode($_GET['s']) ?></li>
@@ -70,13 +71,26 @@ if (strlen($_SESSION['alogin']) == "") {
                                                                         </div>
 
                                                                         <div class="form-group">
-                                                                            <label for="dashboard_page">หน้า DASHBOARD</label>
-                                                                            <select class="form-control" name="dashboard_page" id="dashboard_page">
-                                                                                <option value="Dashboard_admin">Dashboard_admin</option>
-                                                                                <option value="Dashboard_general">Dashboard_general</option>
-                                                                                <option value="Dashboard_purchase">Dashboard_purchase</option>
-                                                                                <option value="Dashboard_sale">Dashboard_sale</option>
-                                                                                <option value="Dashboard_warehouse">Dashboard_warehouse</option>
+                                                                            <label for="dashboard_page">หน้า
+                                                                                DASHBOARD</label>
+                                                                            <select class="form-control"
+                                                                                    name="dashboard_page"
+                                                                                    id="dashboard_page">
+                                                                                <option value="Dashboard_admin">
+                                                                                    Dashboard_admin
+                                                                                </option>
+                                                                                <option value="Dashboard_general">
+                                                                                    Dashboard_general
+                                                                                </option>
+                                                                                <option value="Dashboard_purchase">
+                                                                                    Dashboard_purchase
+                                                                                </option>
+                                                                                <option value="Dashboard_sale">
+                                                                                    Dashboard_sale
+                                                                                </option>
+                                                                                <option value="Dashboard_warehouse">
+                                                                                    Dashboard_warehouse
+                                                                                </option>
                                                                             </select>
                                                                         </div>
 
