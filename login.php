@@ -11,6 +11,18 @@ include('includes/Header.php');
     }
 </style>
 
+<style type="text/css">
+    .toggleeye {
+        float: right;
+        margin-right: 6px;
+        margin-top: -20px;
+        position: relative;
+        z-index: 2;
+        color: darkgrey;
+    }
+</style>
+
+
 <script>
 
     $(document).ready(function () {
@@ -107,16 +119,12 @@ include('includes/Header.php');
                                     <input type="password" class="form-control" id="password"
                                            value=""
                                            placeholder="Password">
+                                    <span class="far fa-eye toggleeye" id="togglePassword"
+                                          style="cursor: pointer;"></span>
                                 </div>
-                                <div class="form-group row">
 
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <i class="far fa-eye" id="togglePassword" style="cursor: pointer;"></i>
-                                            Show/Hide Password
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="on" id="remember"
                                                    name="remember">
@@ -126,6 +134,7 @@ include('includes/Header.php');
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <button type="button" name="login-submit" id="login-submit" tabindex="4"
                                             class="form-control btn btn-primary">

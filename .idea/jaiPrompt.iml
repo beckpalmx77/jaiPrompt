@@ -20,6 +20,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/bootstrap/scss" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/calendar/locales" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/datatables/v11" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/date-picker-1.9/css" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/date-picker-1.9/js" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/date-picker-1.9/locales" />
@@ -41,6 +42,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/fontawesome-free/sprites" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/fontawesome-free/svgs" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/fontawesome-free/webfonts" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/jquery/53" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mpdf/mpdf" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mycalendar/bootstrap" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mycalendar/colorpicker" />

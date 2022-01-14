@@ -140,9 +140,15 @@ if (strlen($_SESSION['alogin']) == "") {
     <script src="js/modal/show_unit_modal.js"></script>
     <!-- Javascript for this page -->
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css"/>
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css"/>
+
+    <script src="vendor/datatables/v11/bootbox.min.js"></script>
+    <script src="vendor/datatables/v11/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="vendor/datatables/v11/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" href="vendor/datatables/v11/buttons.dataTables.min.css"/>
 
     <script src="vendor/date-picker-1.9/js/bootstrap-datepicker.js"></script>
     <script src="vendor/date-picker-1.9/locales/bootstrap-datepicker.th.min.js"></script>
@@ -327,7 +333,6 @@ if (strlen($_SESSION['alogin']) == "") {
     <script>
         function Check_Image() {
             let img = $('#img_array').val();
-
             if (img === '') {
                 let img_gallery = "&nbsp;<img src='gallery/upload.png' style=' width:100%'>&nbsp;";
                 document.getElementById("myDIV").innerHTML = img_gallery;
@@ -341,6 +346,8 @@ if (strlen($_SESSION['alogin']) == "") {
         function Delete_Image(index) {
             if (confirm("ต้องการลบรูปภาพนี้ ?")) {
                 let img = $('#img_array').val().split(",");
+                let fileName = img[index];
+                $('#file_up').val(fileName);
                 if (index !== -1) {
                     img.splice(index, 1);
                     $('#img_array').val(img);
