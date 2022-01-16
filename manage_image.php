@@ -37,9 +37,9 @@ if (strlen($_SESSION['alogin']) == "") {
                                     <section class="container-fluid">
 
                                         <form method="post" id="ImageForm" enctype="multipart/form-data">
-                                            <input type="hidden" class="form-control" id="img_array" name="img_array"
+                                            <input type="text" class="form-control" id="img_array" name="img_array"
                                                    value="">
-                                            <input type="hidden" class="form-control" id="file_up" name="file_up"
+                                            <input type="text" class="form-control" id="file_up" name="file_up"
                                                    value="">
                                             <input type="hidden" class="form-control" id="table_name" name="table_name"
                                                    value="">
@@ -140,10 +140,10 @@ if (strlen($_SESSION['alogin']) == "") {
     <script src="js/modal/show_unit_modal.js"></script>
     <!-- Javascript for this page -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css"/>
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css"/-->
 
     <script src="vendor/datatables/v11/bootbox.min.js"></script>
     <script src="vendor/datatables/v11/jquery.dataTables.min.js"></script>
@@ -238,6 +238,9 @@ if (strlen($_SESSION['alogin']) == "") {
         $(document).ready(function () {
             $('input[type="file"]').change(function (e) {
                 let fileName = e.target.files[0].name;
+
+                //alert("Change = " + fileName);
+
                 $('#file_up').val(fileName);
                 let img_array = $('#img_array').val();
 
@@ -252,6 +255,19 @@ if (strlen($_SESSION['alogin']) == "") {
     </script>
 
     <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#img_file')
+                        .attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
+    <script>
         $(document).ready(function () {
             $("#btnAdd").click(function () {
                 let filename_upload = $('#file_up').val();
@@ -260,7 +276,7 @@ if (strlen($_SESSION['alogin']) == "") {
                 $('#table_name').val("ims_home_model");
 
                 if (filename_upload !== '') {
-                    alert("OK = " + filename_upload + " | " + filename_save);
+                    //alert("OK = " + filename_upload + " | " + filename_save);
                     let formData = $('#ImageForm').serialize();
                     $.ajax({
                         url: 'model/manage_image_process.php',
@@ -305,7 +321,6 @@ if (strlen($_SESSION['alogin']) == "") {
             let img_gallery = "&nbsp;<div class='card'><div class='card-body'><div class='card-columns'>";
             for (let i = 0; i < img.length; i++) {
                 if (img[i] !== "") {
-                    //img_gallery = img_gallery + "<img src='gallery/" + img[i] + "' style=' width:100%'  onclick='Delete_Image(this);'>&nbsp;";
                     img_gallery = img_gallery + "<img src='gallery/" + img[i] + "' style=' width:100%'>&nbsp;";
                     img_gallery = img_gallery + "<a href='javascript:Delete_Image(" + i + ")' class='icon-block'>ลบ <i class='fa fa-times' aria-hidden='true'></i></a>";
                 }
@@ -378,19 +393,7 @@ if (strlen($_SESSION['alogin']) == "") {
 
     </script>
 
-    <script>
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                let reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#img_file')
-                        .attr('src', e.target.result);
-                };
 
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    </script>
 
     </body>
 

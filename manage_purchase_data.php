@@ -9,6 +9,25 @@ if (strlen($_SESSION['alogin']) == "") {
     <!DOCTYPE html>
     <html lang="th">
 
+    <style>
+
+        .feedback {
+            background-color: #31B0D5;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            border-color: #46b8da;
+        }
+
+
+        #menu_fix_button {
+            position: fixed;
+            bottom: 4px;
+            right: 80px;
+        }
+
+    </style>
+
     <body id="page-top">
     <div id="wrapper">
 
@@ -20,7 +39,8 @@ if (strlen($_SESSION['alogin']) == "") {
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800"><span id="title"></span></h1>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="<?php echo $_SESSION['dashboard_page']?>">Home</a></li>
+                            <li class="breadcrumb-item"><a href="<?php echo $_SESSION['dashboard_page'] ?>">Home</a>
+                            </li>
                             <li class="breadcrumb-item"><span id="main_menu"></li>
                             <li class="breadcrumb-item active"
                                 aria-current="page"><span id="sub_menu"></li>
@@ -125,6 +145,14 @@ if (strlen($_SESSION['alogin']) == "") {
 
                                                 </div>
                                             </div>
+
+                                            <!--div id="mybutton">
+                                                <button class="feedback">Feedback</button>
+                                            </div-->
+                                            <a href="#page-top"><img src="img/btn/BTN_MENU.png"    height="48"
+                                                                 width="48" id="menu_fix_button"></a>
+
+
                                             <div class="modal-footer">
                                                 <input type="hidden" name="id" id="id"/>
                                                 <input type="hidden" name="save_status" id="save_status"/>

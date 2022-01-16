@@ -5,7 +5,10 @@ include('config/connect_db.php');
 include('config/lang.php');
 ?>
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+<!--link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"-->
+
+<link href="../vendor/fontawesome-free-5.15.4-web/css/fontawesome.css" rel="stylesheet">
+
 
 <!-- Sidebar -->
 <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
@@ -104,6 +107,8 @@ include('config/lang.php');
             <i class="fas fa-sign-out-alt"></i>
             <span>Exit</span></a>
     </li>
+
+
 
 
 

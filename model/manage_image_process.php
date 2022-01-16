@@ -67,7 +67,7 @@ if ($_POST["action"] === 'DELETE_IMAGE') {
         $query->bindParam(':img', $img, PDO::PARAM_STR);
         $query->bindParam(':id', $id, PDO::PARAM_STR);
         $query->execute();
-        @unlink($file_target);
+        //@unlink($file_target);
         echo $del_success;
     }
 
