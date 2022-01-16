@@ -146,12 +146,7 @@ if (strlen($_SESSION['alogin']) == "") {
                                                 </div>
                                             </div>
 
-                                            <!--div id="mybutton">
-                                                <button class="feedback">Feedback</button>
-                                            </div-->
-                                            <a href="#page-top"><img src="img/btn/BTN_MENU.png"    height="48"
-                                                                 width="48" id="menu_fix_button"></a>
-
+                                            <?php include("includes/stick_menu.php"); ?>
 
                                             <div class="modal-footer">
                                                 <input type="hidden" name="id" id="id"/>
