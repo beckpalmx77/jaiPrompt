@@ -51,7 +51,7 @@ DROP TABLE IF EXISTS `ims_customer`;
 CREATE TABLE `ims_customer`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `customer_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `f_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `address` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `phone` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `balance` double(10, 2) NULL DEFAULT 0,
@@ -1654,7 +1654,7 @@ CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_order_detail_temp` AS 
 -- View structure for v_order_master
 -- ----------------------------
 DROP VIEW IF EXISTS `v_order_master`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_order_master` AS SELECT `ims_order_master`.`id` AS `id`, `ims_order_master`.`doc_no` AS `doc_no`, `ims_order_master`.`doc_year` AS `doc_year`, `ims_order_master`.`doc_runno` AS `doc_runno`, `ims_order_master`.`customer_id` AS `customer_id`, `ims_order_master`.`doc_date` AS `doc_date`, `ims_order_master`.`create_date` AS `create_date`, `ims_order_master`.`status` AS `status`, `ims_order_master`.`KeyAddData` AS `KeyAddData`, `ims_customer`.`customer_name` AS `customer_name` FROM (`ims_order_master` left join `ims_customer` on(`ims_customer`.`customer_id` = `ims_order_master`.`customer_id`)) ;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_order_master` AS SELECT `ims_order_master`.`id` AS `id`, `ims_order_master`.`doc_no` AS `doc_no`, `ims_order_master`.`doc_year` AS `doc_year`, `ims_order_master`.`doc_runno` AS `doc_runno`, `ims_order_master`.`customer_id` AS `customer_id`, `ims_order_master`.`doc_date` AS `doc_date`, `ims_order_master`.`create_date` AS `create_date`, `ims_order_master`.`status` AS `status`, `ims_order_master`.`KeyAddData` AS `KeyAddData`, `ims_customer`.`f_name` AS `f_name` FROM (`ims_order_master` left join `ims_customer` on(`ims_customer`.`customer_id` = `ims_order_master`.`customer_id`)) ;
 
 -- ----------------------------
 -- View structure for v_purchase_detail

@@ -119,11 +119,11 @@ if (strlen($_SESSION['alogin']) == "") {
                                                                            id="customer_id"
                                                                            name="customer_id">
                                                                     <div class="col-sm-12">
-                                                                        <label for="customer_name"
+                                                                        <label for="f_name"
                                                                                class="control-label">ชื่อลูกค้า</label>
                                                                         <input type="text" class="form-control"
-                                                                               id="customer_name"
-                                                                               name="customer_name"
+                                                                               id="f_name"
+                                                                               name="f_name"
                                                                                readonly="true"
                                                                                placeholder="ชื่อลูกค้า">
                                                                     </div>
@@ -355,7 +355,7 @@ if (strlen($_SESSION['alogin']) == "") {
                 },
                 'columns': [
                     {data: 'doc_no'},
-                    {data: 'customer_name'},
+                    {data: 'f_name'},
                     {data: 'doc_date'},
                     {data: 'status'},
                     {data: 'update'},
@@ -403,7 +403,7 @@ if (strlen($_SESSION['alogin']) == "") {
                         let doc_no = response[i].doc_no;
                         let doc_date = response[i].doc_date;
                         let customer_id = response[i].customer_id;
-                        let customer_name = response[i].customer_name;
+                        let f_name = response[i].f_name;
                         let status = response[i].status;
 
                         $('#recordModal').modal('show');
@@ -414,7 +414,7 @@ if (strlen($_SESSION['alogin']) == "") {
                         $('#doc_no').val(doc_no);
                         $('#doc_date').val(doc_date);
                         $('#customer_id').val(customer_id);
-                        $('#customer_name').val(customer_name);
+                        $('#f_name').val(f_name);
                         $('#status').val(status);
                         $('.modal-title').html("<i class='fa fa-minus'></i> Delete Record");
                         $('#action').val('DELETE');
@@ -461,12 +461,12 @@ if (strlen($_SESSION['alogin']) == "") {
                         let doc_no = response[i].doc_no;
                         let doc_date = response[i].doc_date;
                         let customer_id = response[i].customer_id;
-                        let customer_name = response[i].customer_name;
+                        let f_name = response[i].f_name;
                         let url = "manage_order_data.php?title=รายการขายสินค้า (Product Order)"
                             + '&main_menu=' + main_menu + '&sub_menu=' + sub_menu
                             + '&doc_no=' + doc_no + '&doc_date=' + doc_date
                             + '&customer_id=' + customer_id
-                            + '&customer_name=' + customer_name
+                            + '&f_name=' + f_name
                             + '&action=UPDATE';
                         OpenPopupCenter(url, "", "");
                     }

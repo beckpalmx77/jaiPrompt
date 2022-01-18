@@ -129,7 +129,6 @@ if (strlen($_SESSION['alogin']) == "") {
                                                                            placeholder="โทรศัพท์">
                                                                 </div>
 
-
                                                                 <div class="form-group">
                                                                     <label for="status"
                                                                            class="control-label">Status</label>

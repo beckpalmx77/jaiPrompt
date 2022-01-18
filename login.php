@@ -129,7 +129,7 @@ include('includes/Header.php');
                                             <input class="form-check-input" type="checkbox" value="on" id="remember"
                                                    name="remember">
                                             <label class="form-check-label" for="remember">
-                                                Remember Me
+                                                Remember Me 30 Days
                                             </label>
                                         </div>
                                     </div>

@@ -150,103 +150,61 @@ if (strlen($_SESSION['alogin']) == "") {
                                                                 </div>
 
                                                                 <div class="form-group row">
-                                                                    <div class="col-sm-4">
-                                                                        <label for="province_name"
-                                                                               class="control-label">จังหวัด</label>
-                                                                        <input type="hidden" id="province"
-                                                                               name="province">
-                                                                        <input type="text" class="form-control"
-                                                                               id="province_name"
-                                                                               name="province_name"
-                                                                               required="required"
-                                                                               readonly="true"
-                                                                               placeholder="จังหวัด">
+                                                                    <div class="col-sm-6">
+                                                                        <label for="province" class="control-label">จังหวัด</label>
+                                                                        <select name="province" id="province" class="form-control">
+                                                                            <?php
+                                                                            $sql1 = "SELECT * from provinces order by id ";
+                                                                            $query1 = $conn->prepare($sql1);
+                                                                            $query1->execute();
+                                                                            $results1 = $query1->fetchAll(PDO::FETCH_OBJ);
+                                                                            if ($query1->rowCount() > 0) {
+                                                                                foreach ($results1 as $result1) { ?>
+                                                                                    <option
+                                                                                            value="<?php echo htmlentities($result1->province_id); ?>"><?php echo htmlentities($result1->name_th); ?>
+                                                                                    </option>
+                                                                                <?php }
+                                                                            } ?>
+                                                                        </select>
                                                                     </div>
-                                                                    <div class="col-sm-2">
-                                                                        <label for="province"
-                                                                               class="control-label">เลือก</label>
-
-                                                                        <a data-toggle="modal"
-                                                                           href="#SearchProvinceModal"
-                                                                           class="btn btn-primary">
-                                                                            Click <i class="fa fa-search"
-                                                                                     aria-hidden="true"></i>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="col-sm-4">
-                                                                        <label for="amphure_name"
-                                                                               class="control-label">เขต/อำเภอ</label>
-                                                                        <input type="hidden" id="amphure"
-                                                                               name="amphure">
-                                                                        <input type="text" class="form-control"
-                                                                               id="amphure_name"
-                                                                               name="amphure_name"
-                                                                               required="required"
-                                                                               readonly="true"
-                                                                               placeholder="เขต/อำเภอ">
-
-                                                                    </div>
-                                                                    <div class="col-sm-2">
+                                                                    <div class="col-sm-6">
                                                                         <label for="amphure"
-                                                                               class="control-label">เลือก</label>
-
-                                                                        <a data-toggle="modal"
-                                                                           href="#SearchAmphureModal"
-                                                                           class="btn btn-primary">
-                                                                            Click <i class="fa fa-search"
-                                                                                     aria-hidden="true"></i>
-                                                                        </a>
+                                                                               class="control-label">เขต/อำเภอ</label>
+                                                                        <select name="amphure" id="amphure" class="form-control">
+                                                                            <option value="">-</option>
+                                                                        </select>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="form-group row">
                                                                     <div class="col-sm-6">
                                                                         <label for="tumbol" class="control-label">แขวง/ตำบล</label>
-                                                                        <input type="hidden" id="tumbol" name="tumbol">
-                                                                        <input type="text" class="form-control"
-                                                                               id="tumbol_name"
-                                                                               name="tumbol_name"
-                                                                               required="required"
-                                                                               readonly="true"
-                                                                               placeholder="แขวง/ตำบล">
+                                                                        <select name="tumbol" id="tumbol" class="form-control">
+                                                                            <option value="">-</option>
+                                                                        </select>
                                                                     </div>
-                                                                    <div class="col-sm-2">
-                                                                        <label for="tumbol"
-                                                                               class="control-label">เลือก</label>
-
-                                                                        <a data-toggle="modal"
-                                                                           href="#SearchTumbolModal"
-                                                                           class="btn btn-primary">
-                                                                            Click <i class="fa fa-search"
-                                                                                     aria-hidden="true"></i>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="col-sm-4">
+                                                                    <div class="col-sm-6">
                                                                         <label for="zipcode"
                                                                                class="control-label">รหัสไปรษณีย์</label>
-                                                                        <input id="zipcode" type="text" name="zipcode"
-                                                                               class="form-control"
+                                                                        <input id="zipcode" type="text" name="zipcode" class="form-control"
                                                                                placeholder="">
                                                                         <div class="help-block with-errors"></div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
 
-                                                            <div class="form-group">
-                                                                <label for="status"
-                                                                       class="control-label">Status</label>
-                                                                <select id="status" name="status"
-                                                                        class="form-control"
-                                                                        data-live-search="true"
-                                                                        title="Please select">
-                                                                    <option>Active</option>
-                                                                    <option>Inactive</option>
-                                                                </select>
-                                                            </div>
 
+                                                                <div class="form-group">
+                                                                    <label for="status"
+                                                                           class="control-label">Status</label>
+                                                                    <select id="status" name="status"
+                                                                            class="form-control" data-live-search="true"
+                                                                            title="Please select">
+                                                                        <option>Active</option>
+                                                                        <option>Inactive</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
                                                         </div>
-
-
                                                         <div class="modal-footer">
                                                             <input type="hidden" name="id" id="id"/>
                                                             <input type="hidden" name="action" id="action" value=""/>
@@ -262,10 +220,10 @@ if (strlen($_SESSION['alogin']) == "") {
                                                         </div>
                                                     </form>
 
-
                                                 </div>
                                             </div>
                                         </div>
+
 
                                 </div>
                             </div>
@@ -275,100 +233,6 @@ if (strlen($_SESSION['alogin']) == "") {
                 </div>
             </div>
         </div>
-
-
-        <div class="modal fade" id="SearchProvinceModal">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Modal title</h4>
-                        <button type="button" class="close" data-dismiss="modal"
-                                aria-hidden="true">X
-                        </button>
-                    </div>
-                    <div class="container"></div>
-                    <div class="modal-body">
-                        <div class="modal-body">
-                            <table cellpadding="0" cellspacing="0" border="0"
-                                   class="display"
-                                   id="TableProvinceList"
-                                   width="100%">
-                                <thead>
-                                <tr>
-                                    <th>รหัสจังหวัด</th>
-                                    <th>ชื่อจังหวัด</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="SearchAmphureModal">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Modal title</h4>
-                        <button type="button" class="close" data-dismiss="modal"
-                                aria-hidden="true">×
-                        </button>
-                    </div>
-                    <div class="container"></div>
-                    <div class="modal-body">
-                        <div class="modal-body">
-                            <table cellpadding="0" cellspacing="0" border="0"
-                                   class="display"
-                                   id="TableAmphureList"
-                                   width="100%">
-                                <thead>
-                                <tr>
-                                    <th>รหัสอำเภอ</th>
-                                    <th>ชื่ออำเภอ</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="SearchTumbolModal">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Modal title</h4>
-                        <button type="button" class="close" data-dismiss="modal"
-                                aria-hidden="true">×
-                        </button>
-                    </div>
-                    <div class="container"></div>
-                    <div class="modal-body">
-                        <div class="modal-body">
-                            <table cellpadding="0" cellspacing="0" border="0"
-                                   class="display"
-                                   id="TableTumbolList"
-                                   width="100%">
-                                <thead>
-                                <tr>
-                                    <th>รหัสตำบล</th>
-                                    <th>ชื่อตำบล</th>
-                                    <th>รหัสไปรษณีย์</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
     </div>
 
     <?php
@@ -387,10 +251,6 @@ if (strlen($_SESSION['alogin']) == "") {
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="js/myadmin.min.js"></script>
-
-    <script src="js/modal/show_province_modal.js"></script>
-    <script src="js/modal/show_amphure_modal.js"></script>
-    <script src="js/modal/show_tumbol_modal.js"></script>
 
     <!-- Page level plugins -->
 
@@ -521,13 +381,7 @@ if (strlen($_SESSION['alogin']) == "") {
                 $('#l_name').val("");
                 $('#address').val("");
                 $('#phone').val("");
-                $('#tumbol').val("");
-                $('#tumbol_name').val("");
-                $('#amphure').val("");
-                $('#amphure_name').val("");
-                $('#province').val("");
-                $('#province_name').val("");
-                $('#zipcode').val("");
+                $('#email').val("");
                 $('.modal-title').html("<i class='fa fa-plus'></i> ADD Record");
                 $('#action').val('ADD');
                 $('#save').val('Save');
@@ -565,6 +419,11 @@ if (strlen($_SESSION['alogin']) == "") {
                         let zipcode = response[i].zipcode;
                         let status = response[i].status;
 
+                        //alert("province_name = " + province_name);
+                        //alert("amphure_name = " + amphure_name);
+                        //alert("tumbol_name = " + tumbol_name);
+
+
                         $('#recordModal').modal('show');
                         $('#id').val(id);
                         $('#customer_id').val(customer_id);
@@ -572,13 +431,6 @@ if (strlen($_SESSION['alogin']) == "") {
                         $('#l_name').val(l_name);
                         $('#address').val(address);
                         $('#phone').val(phone);
-                        $('#province').val(province);
-                        $('#province_name').val(province_name);
-                        $('#amphure').val(amphure);
-                        $('#amphure_name').val(amphure_name);
-                        $('#tumbol').val(tumbol);
-                        $('#tumbol_name').val(tumbol_name);
-                        $('#zipcode').val(zipcode);
                         $('#email').val(email);
                         $('#status').val(status);
                         $('.modal-title').html("<i class='fa fa-plus'></i> Edit Record");
@@ -636,9 +488,61 @@ if (strlen($_SESSION['alogin']) == "") {
 
     </script>
 
+    <script>
+        $(document).ready(function () {
+            $('#province').on('change', function () {
+                let provinceID = $(this).val();
+                if (provinceID) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'framework/AjaxZipCodeData.php',
+                        data: 'province_id=' + provinceID,
+                        success: function (html) {
+                            $('#amphure').html(html);
+                            $('#tumbol').html('<option value=""></option>');
+                        }
+                    });
+                } else {
+                    $('#amphure').html('<option value=""></option>');
+                    $('#tumbol').html('<option value=""></option>');
+                }
+            });
+
+            $('#amphure').on('change', function () {
+                let amphureID = $(this).val();
+                if (amphureID) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'framework/AjaxZipCodeData.php',
+                        data: 'amphure_id=' + amphureID,
+                        success: function (html) {
+                            //alert(html);
+                            $('#tumbol').html(html);
+                        }
+                    });
+                } else {
+                    $('#tumbol').html('<option value=""></option>');
+                }
+            });
+
+            $('#tumbol').on('change', function () {
+                let tumbolID = $(this).val();
+                if (tumbolID) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'framework/AjaxZipCodeData.php',
+                        data: 'tumbol_id=' + tumbolID,
+                        success: function (zipcode) {
+                            document.getElementById("zipcode").value = zipcode;
+                        }
+                    });
+                }
+            });
+
+        });
+    </script>
 
     </body>
     </html>
 
 <?php } ?>
-

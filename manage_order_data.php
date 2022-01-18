@@ -68,11 +68,11 @@ if (strlen($_SESSION['alogin']) == "") {
                                                                id="customer_id"
                                                                name="customer_id">
                                                         <div class="col-sm-6">
-                                                            <label for="customer_name"
+                                                            <label for="f_name"
                                                                    class="control-label">ชื่อลูกค้า</label>
                                                             <input type="text" class="form-control"
-                                                                   id="customer_name"
-                                                                   name="customer_name"
+                                                                   id="f_name"
+                                                                   name="f_name"
                                                                    required="required"
                                                                    placeholder="ชื่อลูกค้า">
                                                         </div>
@@ -513,12 +513,12 @@ if (strlen($_SESSION['alogin']) == "") {
                 $('#save_status').val("add");
             }
 
-            if (queryString["doc_no"] != null && queryString["customer_name"] != null) {
+            if (queryString["doc_no"] != null && queryString["f_name"] != null) {
 
                 $('#doc_no').val(queryString["doc_no"]);
                 $('#doc_date').val(queryString["doc_date"]);
                 $('#customer_id').val(queryString["customer_id"]);
-                $('#customer_name').val(queryString["customer_name"]);
+                $('#f_name').val(queryString["f_name"]);
 
                 Load_Data_Detail(queryString["doc_no"], "v_order_detail");
             }
@@ -571,7 +571,7 @@ if (strlen($_SESSION['alogin']) == "") {
     <script>
         $(document).ready(function () {
             $("#btnAdd").click(function () {
-                if ($('#doc_date').val() == '' || $('#customer_name').val() == '') {
+                if ($('#doc_date').val() == '' || $('#f_name').val() == '') {
                     alertify.error("กรุณาป้อนวันที่ / ชื่อลูกค้า ");
                 } else {
                     $('#recordModal').modal('show');
@@ -710,7 +710,7 @@ if (strlen($_SESSION['alogin']) == "") {
     <script>
         $(document).ready(function () {
             $("#btnSave").click(function () {
-                if ($('#doc_date').val() == '' || $('#customer_name').val() == '') {
+                if ($('#doc_date').val() == '' || $('#f_name').val() == '') {
                     alertify.error("กรุณาป้อนวันที่ / ชื่อลูกค้า ");
                 } else {
                     let formData = $('#MainrecordForm').serialize();

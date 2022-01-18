@@ -1,7 +1,6 @@
 $(document).ready(function () {
-
-    let formData = {action: "GET_CUSTOMER", sub_action: "GET_SELECT"};
-    let dataRecords = $('#TableCustomerList').DataTable({
+    let formData = {action: "GET_PROVINCE", sub_action: "GET_SELECT"};
+    let dataRecords = $('#TableProvinceList').DataTable({
         'lengthMenu': [[5, 10, 20, 50, 100], [5, 10, 20, 50, 100]],
         'language': {
             search: 'ค้นหา', lengthMenu: 'แสดง _MENU_ รายการ',
@@ -19,20 +18,20 @@ $(document).ready(function () {
         'serverSide': true,
         'serverMethod': 'post',
         'ajax': {
-            'url': 'model/manage_customer_process.php',
+            'url': 'model/manage_province_process.php',
             'data': formData
         },
         'columns': [
-            {data: 'customer_id'},
-            {data: 'f_name'},
+            {data: 'province_id'},
+            {data: 'name_th'},
             {data: 'select'}
         ]
     });
 });
 
-$("#TableCustomerList").on('click', '.select', function () {
+$("#TableProvinceList").on('click', '.select', function () {
     let data = this.id.split('@');
-    $('#customer_id').val(data[0]);
-    $('#f_name').val(data[1]);
-    $('#SearchCusModal').modal('hide');
+    $('#province').val(data[0]);
+    $('#province_name').val(data[1]);
+    $('#SearchProvinceModal').modal('hide');
 });

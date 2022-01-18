@@ -102,6 +102,13 @@ include('config/lang.php');
         }
     }?>
     <hr class="sidebar-divider">
+
+    <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:8888/jaiPrompt_Front/" target="_blank">
+            <i class="fa fa-link"></i>
+            <span>Front End</span></a>
+    </li>
+
     <li class="nav-item active">
         <a class="nav-link" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
             <i class="fas fa-sign-out-alt"></i>

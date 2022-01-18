@@ -20,7 +20,7 @@ if ($_POST["action"] === 'GET_DATA') {
             "doc_no" => $result['doc_no'],
             "doc_date" => $result['doc_date'],
             "customer_id" => $result['customer_id'],
-            "customer_name" => $result['customer_name'],
+            "f_name" => $result['f_name'],
             "status" => $result['status']);
     }
 
@@ -152,10 +152,10 @@ if ($_POST["action"] === 'GET_ORDER') {
     $searchQuery = " ";
     if ($searchValue != '') {
         $searchQuery = " AND (doc_no LIKE :doc_no or
-        customer_name LIKE :customer_name ) ";
+        f_name LIKE :f_name ) ";
         $searchArray = array(
             'doc_no' => "%$searchValue%",
-            'customer_name' => "%$searchValue%",
+            'f_name' => "%$searchValue%",
         );
     }
 
@@ -195,7 +195,7 @@ if ($_POST["action"] === 'GET_ORDER') {
             $data[] = array(
                 "doc_no" => $row['doc_no'],
                 "customer_id" => $row['customer_id'],
-                "customer_name" => $row['customer_name'],
+                "f_name" => $row['f_name'],
                 "doc_date" => $row['doc_date'],
                 "status" => $row['status'] === 'Active' ? "<div class='text-success'>" . $row['status'] . "</div>" : "<div class='text-muted'> " . $row['status'] . "</div>",
                 "update" => "<button type='button' name='update' id='" . $row['id'] . "' class='btn btn-info btn-xs update' data-toggle='tooltip' title='Update'>Update</button>",

@@ -60,14 +60,14 @@
                 }
             }
         }
-        if (queryString["doc_no"] != null && queryString["customer_name"] != null) {
+        if (queryString["doc_no"] != null && queryString["f_name"] != null) {
 
             let data = "<u>Values from QueryString</u><br /><br />";
             data += "<b>doc_no:</b> " + queryString["title"];
 
             $("#lblData").html(data);
             $('#doc_no').val(queryString["doc_no"]);
-            $('#customer_name').val(queryString["customer_name"]);
+            $('#f_name').val(queryString["f_name"]);
 
         }
     });
@@ -93,9 +93,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="customer_name" class="control-label">ชื่อลูกค้า</label>
+                            <label for="f_name" class="control-label">ชื่อลูกค้า</label>
                             <input type="text" class="form-control"
-                                   id="customer_name" name="customer_name"
+                                   id="f_name" name="f_name"
                                    required="required"
                                    placeholder="ชื่อลูกค้า">
                         </div>
@@ -124,7 +124,7 @@
             $('#doc_no').val(decodeURIComponent(qs[1][1]));
             $('#doc_date').val(decodeURIComponent(qs[2][1]));
             $('#customer_id').val(decodeURIComponent(qs[3][1]));
-            $('#customer_name').val(decodeURIComponent(qs[4][1]));
+            $('#f_name').val(decodeURIComponent(qs[4][1]));
 
 
         }
