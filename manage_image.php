@@ -37,9 +37,9 @@ if (strlen($_SESSION['alogin']) == "") {
                                     <section class="container-fluid">
 
                                         <form method="post" id="ImageForm" enctype="multipart/form-data">
-                                            <input type="text" class="form-control" id="img_array" name="img_array"
+                                            <input type="hidden" class="form-control" id="img_array" name="img_array"
                                                    value="">
-                                            <input type="text" class="form-control" id="file_up" name="file_up"
+                                            <input type="hidden" class="form-control" id="file_up" name="file_up"
                                                    value="">
                                             <input type="hidden" class="form-control" id="table_name" name="table_name"
                                                    value="">

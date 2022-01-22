@@ -142,17 +142,28 @@ if (strlen($_SESSION['alogin']) == "") {
                                         <div class="form-group row">
                                             <div class="col-sm-6">
                                                 <label for="contact_name" class="control-label">ผู้ติดต่อ</label>
-                                                <input type="contact_name" class="form-control"
+                                                <input type="text" class="form-control"
                                                        id="contact_name" name="contact_name"
                                                        placeholder="ผู้ติดต่อ">
                                             </div>
-                                            <div class="col-sm-6">
-
-                                                <label for="contact_time"
-                                                       class="control-label">วัน - เวลาติดต่อ</label>
+                                            <div class="col-sm-3">
+                                                <label for="contact_date"
+                                                       class="control-label">วันที่่ติดต่อ</label>
                                                 <input type="text" class="form-control"
+                                                       id="contact_date"
+                                                       name="contact_date"
+                                                       required="required"
+                                                       readonly="true"
+                                                       placeholder="วันที่่ติดต่อ">
+                                                <div class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-th"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label for="contact_time" class="control-label">เวลาที่ติดต่อ</label>
+                                                <input type="time" class="form-control"
                                                        id="contact_time" name="contact_time"
-                                                       placeholder="วัน - เวลาติดต่อ">
+                                                       placeholder="เวลาที่ติดต่อ">
                                             </div>
                                         </div>
 
@@ -216,7 +227,6 @@ if (strlen($_SESSION['alogin']) == "") {
 
     <script src="vendor/date-picker-1.9/js/bootstrap-datepicker.js"></script>
     <script src="vendor/date-picker-1.9/locales/bootstrap-datepicker.th.min.js"></script>
-    <!--link href="vendor/date-picker-1.9/css/date_picker_style.css" rel="stylesheet"/-->
     <link href="vendor/date-picker-1.9/css/bootstrap-datepicker.css" rel="stylesheet"/>
 
     <style>
@@ -237,6 +247,18 @@ if (strlen($_SESSION['alogin']) == "") {
             top: 30%;
         }
     </style>
+
+    <script>
+        $(document).ready(function () {
+            $('#contact_date').datepicker({
+                format: "dd-mm-yyyy",
+                todayHighlight: true,
+                language: "th",
+                autoclose: true
+            });
+        });
+    </script>
+
     <script>
         $(document).ready(function () {
             $(".icon-input-btn").each(function () {
@@ -308,6 +330,7 @@ if (strlen($_SESSION['alogin']) == "") {
                         let phone = response[i].phone;
                         let email = response[i].email;
                         let contact_name = response[i].contact_name;
+                        let contact_date = response[i].contact_date;
                         let contact_time = response[i].contact_time;
                         let status = response[i].status;
                         let update_date = response[i].update_date;
@@ -319,6 +342,7 @@ if (strlen($_SESSION['alogin']) == "") {
                         $('#phone').val(phone);
                         $('#email').val(email);
                         $('#contact_name').val(contact_name);
+                        $('#contact_date').val(contact_date);
                         $('#contact_time').val(contact_time);
                         $('#status').val(status);
                         $('#update_date').val(update_date);

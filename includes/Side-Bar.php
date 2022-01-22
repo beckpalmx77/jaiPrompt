@@ -104,7 +104,8 @@ include('config/lang.php');
     <hr class="sidebar-divider">
 
     <li class="nav-item active">
-        <a class="nav-link" href="http://localhost:8888/jaiPrompt_Front/" target="_blank">
+        <?php $localIP = getHostByName(getHostName()); ?>
+        <a class="nav-link" href="<?php echo "http://" . $localIP . ":8888/jaiPrompt_Front/"; ?>" target="_blank">
             <i class="fa fa-link"></i>
             <span>Front End</span></a>
     </li>

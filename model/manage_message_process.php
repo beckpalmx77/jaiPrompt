@@ -6,7 +6,6 @@ include('../config/connect_db.php');
 include('../config/lang.php');
 include('../util/record_util.php');
 
-
 if ($_POST["action"] === 'GET_DATA') {
 
     $id = $_POST["id"];
@@ -27,6 +26,7 @@ if ($_POST["action"] === 'GET_DATA') {
             "create_date" => $result['create_date'],
             "update_date" => $result['update_date'],
             "contact_name" => $result['contact_name'],
+            "contact_date" => $result['contact_date'],
             "contact_time" => $result['contact_time'],
             "status" => $result['status']);
     }
@@ -52,28 +52,35 @@ if ($_POST["action"] === 'SEARCH') {
 
 if ($_POST["action"] === 'UPDATE') {
 
-    if ($_POST["contact_name"] !== '') {
-        $id = $_POST["id"];
-        $contact_name = $_POST["contact_name"];
-        $contact_time = $_POST["contact_time"];
-        $status = $_POST["status"];
-        $sql_find = "SELECT * FROM afront_contact WHERE id = " . $id ;
-        $nRows = $conn->query($sql_find)->fetchColumn();
-        if ($nRows > 0) {
-            $sql_update = "UPDATE afront_contact SET contact_name=:contact_name,contact_time=:contact_time,status=:status            
-            WHERE id = :id";
-            $query = $conn->prepare($sql_update);
-            $query->bindParam(':contact_name', $contact_name, PDO::PARAM_STR);
-            $query->bindParam(':contact_time', $contact_time, PDO::PARAM_STR);
-            $query->bindParam(':status', $status, PDO::PARAM_STR);
-            $query->bindParam(':id', $id, PDO::PARAM_STR);
-            $query->execute();
-            echo $save_success;
-        }
+    //if ($_POST["contact_name"] !== '') {
+    $id = $_POST["id"];
+    $contact_name = $_POST["contact_name"];
+    $contact_date = $_POST["contact_date"];
+    $contact_time = $_POST["contact_time"];
+    $status = $_POST["status"];
 
+    $date = new DateTime();
+    $date->setTimestamp(time());
+    $timestamp = $date->format(DateTime::RFC1123);
+
+    $sql_find = "SELECT * FROM afront_contact WHERE id = " . $id;
+    $nRows = $conn->query($sql_find)->fetchColumn();
+    if ($nRows > 0) {
+        $sql_update = "UPDATE afront_contact SET contact_name=:contact_name,contact_date=:contact_date
+            ,contact_time=:contact_time,status=:status,update_date=:update_date WHERE id = :id";
+        $query = $conn->prepare($sql_update);
+        $query->bindParam(':contact_name', $contact_name, PDO::PARAM_STR);
+        $query->bindParam(':contact_date', $contact_date, PDO::PARAM_STR);
+        $query->bindParam(':contact_time', $contact_time, PDO::PARAM_STR);
+        $query->bindParam(':status', $status, PDO::PARAM_STR);
+        $query->bindParam(':update_date', $timestamp, PDO::PARAM_STR);
+        $query->bindParam(':id', $id, PDO::PARAM_STR);
+        $query->execute();
+        echo $save_success;
     }
-}
 
+    //}
+}
 
 
 if ($_POST["action"] === 'GET_MESSAGE') {
